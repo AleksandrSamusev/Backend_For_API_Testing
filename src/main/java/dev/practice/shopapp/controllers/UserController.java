@@ -1,5 +1,6 @@
 package dev.practice.shopapp.controllers;
 
+import dev.practice.shopapp.SortingOptions;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.services.UserServiceImpl;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -33,9 +35,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<User>>> getAllUsers(HttpServletRequest request) {
+    public ResponseEntity<ApiResponse<List<User>>> getAllUsers(
+            HttpServletRequest request,
+            @RequestParam(defaultValue = "ID_ASC", required = false) Optional<SortingOptions> sortBy ) {
         return new ResponseEntity<>(
-                ResponseUtil.success(userService.getAllUsers(),
+                ResponseUtil.success(userService.getAllUsers(sortBy),
                         "Success",
                         request.getRequestURI()), HttpStatus.OK);
     }

@@ -16,6 +16,10 @@ public class UserRepository {
 
     public User saveUser(User user) {
         user.setId(Utils.generateId());
+        user.setFirstName(user.getFirstName().strip());
+        user.setLastName(user.getLastName().strip());
+        user.setEmail(user.getEmail().strip());
+        user.setPhoneNumber(user.getPhoneNumber().strip());
         String userAsString = Utils.createUserString(user);
         try {
             List<String> lines = Files.readAllLines(filePath);

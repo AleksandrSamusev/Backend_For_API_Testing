@@ -1,4 +1,5 @@
 package dev.practice.shopapp.utils;
+
 import dev.practice.shopapp.models.User;
 
 import java.io.IOException;
@@ -15,15 +16,15 @@ public class Utils {
     public static String createUserString(User user) {
 
         return user.getId() + "," +
-               user.getFirstName() + "," +
-               user.getLastName() + "," +
-               user.getEmail() + "," +
-               user.getPhoneNumber();
+                user.getFirstName() + "," +
+                user.getLastName() + "," +
+                user.getEmail() + "," +
+                user.getPhoneNumber();
     }
 
     public static List<String> createListOfUsersAsStrings(List<User> users) {
         List<String> strUsers = new ArrayList<>();
-        for(User user: users) {
+        for (User user : users) {
             strUsers.add(createUserString(user));
         }
         return strUsers;
@@ -37,7 +38,7 @@ public class Utils {
         List<User> users = new ArrayList<>();
         try {
             List<String> lines = Files.readAllLines(filePath);
-            for(int i = 0; i<lines.size(); i++) {
+            for (int i = 0; i < lines.size(); i++) {
                 String[] sl = lines.get(i).split(",");
                 User user = new User(Long.parseLong(sl[0]), sl[1], sl[2], sl[3], sl[4]);
                 users.add(user);
