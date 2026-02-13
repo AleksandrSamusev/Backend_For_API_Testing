@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,19 @@ public class GlobalExceptionHandler {
             errors.add(fieldError.getDefaultMessage());
         }
         return ResponseUtil.error(errors, "Validation error", 400, request.getRequestURI());
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiResponse<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex,
+                                                                         HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        String queryParams = request.getQueryString();
+        if(queryParams != null && !queryParams.isBlank()) {
+            uri += "?" + queryParams;
+        }
+        return ResponseUtil.error(Arrays.asList(ex.getMessage()), "Incorrect request parameters",
+                400, uri);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
