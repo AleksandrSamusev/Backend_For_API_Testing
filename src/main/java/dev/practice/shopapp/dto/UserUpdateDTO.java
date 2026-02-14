@@ -12,7 +12,6 @@ public class UserUpdateDTO {
     @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     @Pattern(regexp = "^[a-zA-Z -]+$", message = "Last name must only contain letters, hyphens, and spaces")
     private String lastName;
-    @NotBlank(message = "Email cannot be blank")
     @Email(message = "Invalid email format")
     private String email;
     @Size(min = 12, max = 16, message = "Phone number must have between 12 and 15 characters")
