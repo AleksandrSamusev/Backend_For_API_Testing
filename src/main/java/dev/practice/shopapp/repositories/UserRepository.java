@@ -1,6 +1,8 @@
 package dev.practice.shopapp.repositories;
 
+import dev.practice.shopapp.dto.UserCreateDTO;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
+import dev.practice.shopapp.mappers.UserMapper;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.utils.Utils;
 
@@ -14,12 +16,10 @@ public class UserRepository {
 
     private static final Path filePath = Path.of("users.txt");
 
-    public User saveUser(User user) {
-        user.setId(Utils.generateId());
-        user.setFirstName(user.getFirstName().strip());
-        user.setLastName(user.getLastName().strip());
-        user.setEmail(user.getEmail().strip());
-        user.setPhoneNumber(user.getPhoneNumber().strip());
+    public User saveUser(UserCreateDTO dto) {
+
+        Long id = Utils.generateId();
+        User user = UserMapper.toUser(dto, id);
         String userAsString = Utils.createUserString(user);
         try {
             List<String> lines = Files.readAllLines(filePath);

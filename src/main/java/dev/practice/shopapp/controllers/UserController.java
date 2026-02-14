@@ -1,6 +1,7 @@
 package dev.practice.shopapp.controllers;
 
 import dev.practice.shopapp.SortingOptions;
+import dev.practice.shopapp.dto.UserCreateDTO;
 import dev.practice.shopapp.dto.UserUpdateDTO;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
@@ -26,10 +27,10 @@ public class UserController {
     private final UserServiceImpl userService = new UserServiceImpl();
 
     @PostMapping
-    public ResponseEntity<ApiResponse<User>> createUser(@Valid @RequestBody User user,
+    public ResponseEntity<ApiResponse<User>> createUser(@Valid @RequestBody UserCreateDTO dto,
                                                         HttpServletRequest request) {
         return new ResponseEntity<>(
-                ResponseUtil.success(userService.createUser(user),
+                ResponseUtil.success(userService.createUser(dto),
                         "User successfully created",
                         request.getRequestURI()),
                 HttpStatus.CREATED);

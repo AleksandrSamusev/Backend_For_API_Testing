@@ -1,6 +1,7 @@
 package dev.practice.shopapp.services;
 
 import dev.practice.shopapp.SortingOptions;
+import dev.practice.shopapp.dto.UserCreateDTO;
 import dev.practice.shopapp.dto.UserUpdateDTO;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.models.User;
@@ -17,8 +18,8 @@ public class UserServiceImpl {
 
     private final UserRepository userRepository = new UserRepository();
 
-    public User createUser(User user) {
-        return userRepository.saveUser(user);
+    public User createUser(UserCreateDTO dto) {
+        return userRepository.saveUser(dto);
 
     }
 
