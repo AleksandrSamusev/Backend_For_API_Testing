@@ -28,6 +28,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI());
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
     public ApiResponse<Object> handleResourceNotFoundException(ResourceNotFoundException ex,
                                                                HttpServletRequest request) {
@@ -36,6 +37,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex,
                                                                      HttpServletRequest request) {
         List<String> errors = new ArrayList<>();
