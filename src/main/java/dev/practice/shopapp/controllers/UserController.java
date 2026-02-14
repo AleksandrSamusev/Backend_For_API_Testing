@@ -1,6 +1,7 @@
 package dev.practice.shopapp.controllers;
 
 import dev.practice.shopapp.SortingOptions;
+import dev.practice.shopapp.dto.UserUpdateDTO;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.services.UserServiceImpl;
@@ -55,10 +56,10 @@ public class UserController {
 
     @PutMapping("/{userId}")
     public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable Long userId,
-                                                        @Valid @RequestBody User user,
+                                                        @Valid @RequestBody UserUpdateDTO dto,
                                                         HttpServletRequest request) {
         return new ResponseEntity<>(
-                ResponseUtil.success(userService.updateUser(userId, user),
+                ResponseUtil.success(userService.updateUser(userId, dto),
                         "Success",
                         request.getRequestURI()), HttpStatus.OK);
     }
