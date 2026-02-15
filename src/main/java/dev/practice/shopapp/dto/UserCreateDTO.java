@@ -1,22 +1,18 @@
 package dev.practice.shopapp.dto;
 
-import jakarta.validation.constraints.Email;
+import dev.practice.shopapp.validation.ValidEmail;
+import dev.practice.shopapp.validation.ValidName;
+import dev.practice.shopapp.validation.ValidPhoneNumber;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 public class UserCreateDTO {
-    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
-    @Pattern(regexp = "^[a-zA-Z -]+$", message = "First name must only contain letters, hyphens, and spaces")
+    @ValidName(fieldName = "firstname")
     private String firstName;
-    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
-    @Pattern(regexp = "^[a-zA-Z -]+$", message = "Last name must only contain letters, hyphens, and spaces")
+    @ValidName(fieldName = "lastname")
     private String lastName;
-    @NotBlank(message = "Email cannot be blank")
-    @Email(message = "Invalid email format")
+    @ValidEmail
     private String email;
-    @Size(min = 12, max = 16, message = "Phone number must have between 12 and 15 characters")
-    @Pattern(regexp = "^\\+\\d{1,15}$", message = "Invalid phone number format. Use + and numbers (e.g., +1234567890)")
+    @ValidPhoneNumber
     private String phoneNumber;
 
     public String getFirstName() {
@@ -40,7 +36,10 @@ public class UserCreateDTO {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email != null) {
+            // Sanitize value
+            this.email = email.trim().toLowerCase();
+        }
     }
 
     public String getPhoneNumber() {
