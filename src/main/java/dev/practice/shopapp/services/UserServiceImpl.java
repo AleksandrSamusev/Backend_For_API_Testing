@@ -20,7 +20,6 @@ public class UserServiceImpl {
 
     public User createUser(UserCreateDTO dto) {
         return userRepository.saveUser(dto);
-
     }
 
     public List<User> getAllUsers(Optional<SortingOptions> option) {

@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Object> handleGeneralException(Exception ex, HttpServletRequest request) {
-        return ResponseUtil.error(Arrays.asList(ex.getMessage()),
+        return ResponseUtil.error(Collections.singletonList(ex.getMessage()),
                 "Internal server error",
                 500,
                 request.getRequestURI());
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ApiResponse<Object> handleResourceNotFoundException(ResourceNotFoundException ex,
                                                                HttpServletRequest request) {
-        return ResponseUtil.error(Arrays.asList(ex.getMessage()), "Resource not found",
+        return ResponseUtil.error(Collections.singletonList(ex.getMessage()), "Resource not found",
                 404, request.getRequestURI());
     }
 
@@ -69,8 +69,26 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex,
                                                                      HttpServletRequest request) {
-        return ResponseUtil.error(Arrays.asList(ex.getMessage()),
+        return ResponseUtil.error(Collections.singletonList(ex.getMessage()),
                 "Invalid request body: please provide a valid JSON payload",
                 400, request.getRequestURI());
+    }
+
+    @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
+    public org.springframework.http.ResponseEntity<ApiResponse<Object>> handleResponseStatusException(
+            org.springframework.web.server.ResponseStatusException ex,
+            HttpServletRequest request) {
+
+        // This extracts "Email already in use" from the exception
+        String errorMessage = ex.getReason() != null ? ex.getReason() : "Conflict occurred";
+
+        ApiResponse<Object> errorResponse = ResponseUtil.error(
+                Collections.singletonList(errorMessage),
+                "Business Logic Error", // The general message
+                ex.getStatusCode().value(), // This will be 409
+                request.getRequestURI()
+        );
+
+        return new org.springframework.http.ResponseEntity<>(errorResponse, ex.getStatusCode());
     }
 }

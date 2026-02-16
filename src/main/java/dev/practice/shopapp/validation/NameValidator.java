@@ -40,7 +40,9 @@ public class NameValidator implements ConstraintValidator<ValidName, String> {
         }
 
         // Check Pattern
-        if (!value.matches("^[a-zA-Z -]+$")) {
+        // Prev - ^[a-zA-Z -]+$
+        //For internationalization - ^[a-zA-Z\u00C0-\u017F -]+$
+        if (!value.matches("^[a-zA-Z\\u00C0-\\u017F -]+$")) {
             addViolation(context, "user." + fieldName + ".pattern");
             isValid = false;
         }

@@ -3,7 +3,6 @@ package dev.practice.shopapp.dto;
 import dev.practice.shopapp.validation.ValidEmail;
 import dev.practice.shopapp.validation.ValidName;
 import dev.practice.shopapp.validation.ValidPhoneNumber;
-import jakarta.validation.constraints.NotBlank;
 
 public class UserUpdateDTO {
     @ValidName(fieldName = "firstname")
