@@ -6,7 +6,9 @@ import dev.practice.shopapp.dto.UserUpdateDTO;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Comparator;
 import java.util.List;
@@ -45,23 +47,34 @@ public class UserServiceImpl {
     }
 
     public User updateUser(Long userId, UserUpdateDTO dto) {
-
         List<User> users = userRepository.readAllUsers();
-        User targetUser = users.stream().filter(u -> Objects.equals(u.getId(), userId))
-                .findAny().orElseThrow(() -> new ResourceNotFoundException(
-                        "User not found with given ID: " + userId));
-        if (dto.getFirstName() != null) {
-            targetUser.setFirstName(dto.getFirstName().strip());
-        }
-        if (dto.getLastName() != null) {
-            targetUser.setLastName(dto.getLastName().strip());
-        }
+
+        // 1. Find the target user
+        User targetUser = users.stream()
+                .filter(u -> Objects.equals(u.getId(), userId))
+                .findAny()
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with given ID: " + userId));
+
+        // 2. Add a check: If email is being updated, check if it's taken by ANOTHER user
         if (dto.getEmail() != null) {
-            targetUser.setEmail(dto.getEmail().strip());
+            String newEmail = dto.getEmail().strip().toLowerCase();
+
+            boolean emailTakenBySomeoneElse = users.stream()
+                    .anyMatch(u -> !Objects.equals(u.getId(), userId) && // NOT this user
+                            u.getEmail().equalsIgnoreCase(newEmail)); // BUT matches this email
+
+            if (emailTakenBySomeoneElse) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already in use");
+            }
+
+            targetUser.setEmail(newEmail);
         }
-        if (dto.getPhoneNumber() != null) {
-            targetUser.setPhoneNumber(dto.getPhoneNumber().strip());
-        }
+
+        // 3. Update other fields
+        if (dto.getFirstName() != null) targetUser.setFirstName(dto.getFirstName().strip());
+        if (dto.getLastName() != null) targetUser.setLastName(dto.getLastName().strip());
+        if (dto.getPhoneNumber() != null) targetUser.setPhoneNumber(dto.getPhoneNumber().strip());
+
         userRepository.rewriteAllUsers(users);
         return targetUser;
     }
