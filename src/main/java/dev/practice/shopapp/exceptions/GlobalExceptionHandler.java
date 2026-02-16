@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -56,8 +54,15 @@ public class GlobalExceptionHandler {
         if(queryParams != null && !queryParams.isBlank()) {
             uri += "?" + queryParams;
         }
-        return ResponseUtil.error(Arrays.asList(ex.getMessage()), "Incorrect request parameters",
-                400, uri);
+        String cleanError = String.format("The parameter '%s' must be of type '%s', but you provided '%s'",
+                ex.getName(),
+                Objects.requireNonNull(ex.getRequiredType()).getSimpleName(),
+                ex.getValue());
+        return ResponseUtil.error(
+                Collections.singletonList(cleanError),
+                "Incorrect request parameters",
+                400,
+                uri);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
