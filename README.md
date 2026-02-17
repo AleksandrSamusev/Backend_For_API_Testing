@@ -1,9 +1,9 @@
-# 🛒 Backend For API Testing Practice
+# 🛠️ API Testing Sandbox: User Management
 
 [![Java Version](https://img.shields.io/badge/Java-21+-orange?logo=java)](https://www.oracle.com)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?logo=springboot)](https://spring.io)
 [![Swagger](https://img.shields.io/badge/Swagger-API_Docs-85EA2D?logo=swagger)](https://ratty-merrily-devpractice-8e62228c.koyeb.app/swagger-ui/index.html)
-> **A professional RESTful API** for user account management, featuring standardized response wrappers, custom Jakarta validations, and automated OpenAPI 3 documentation.
+> **A specialized REST API playground** built as a stable target for both **manual and automated API testing practice**. While the architecture follows professional standards, the project’s heart is to serve as a "live basis" for testers to hone their craft.
 
 ---
 
