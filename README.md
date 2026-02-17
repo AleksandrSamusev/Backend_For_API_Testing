@@ -181,5 +181,19 @@ When calling `GET /api/v1/users`, you can apply the `sortBy` query parameter usi
 
 ---
 
+## 🗺️ Project Roadmap
+
+This sandbox is constantly evolving to provide more complex testing scenarios. Here is what’s coming next:
+
+### 📍 Phase 2: Relational Data & Address Management
+To move beyond a single entity, I am currently working on introducing the **Address** resource. This will allow testers to practice testing nested objects and one-to-many relationships.
+
+*   **New Entity:** `Address` (Linked to User)
+*   **Fields:** `id`, `addressType`, `addressLine`, `city`, `state`, `zipCode`, `country`.
+*   **Persistence:** A new `address.txt` file will be added to maintain our "No-DB-required" strategy.
+*   **Testing Opportunity:** This update will introduce scenarios for **referential integrity** (e.g., what happens to addresses when a user is deleted?) and **nested validation**.
+
+---
+
 ## 🔒 License
 This project is licensed under the MIT License - see the LICENSE file for details.
