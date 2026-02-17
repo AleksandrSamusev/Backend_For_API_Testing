@@ -183,15 +183,24 @@ When calling `GET /api/v1/users`, you can apply the `sortBy` query parameter usi
 
 ## 🗺️ Project Roadmap
 
-This sandbox is constantly evolving to provide more complex testing scenarios. Here is what’s coming next:
+This sandbox is evolving from a simple single-entity API to a more complex system to provide diverse testing challenges.
 
-### 📍 Phase 2: Relational Data & Address Management
-To move beyond a single entity, I am currently working on introducing the **Address** resource. This will allow testers to practice testing nested objects and one-to-many relationships.
+### ✅ Phase 1: Core User Management (Current)
+*   **Status:** Completed
+*   **Focus:** Establishing the foundation.
+*   **Features:** Full CRUD for the `User` entity, custom Jakarta validation, automated OpenAPI documentation, and the lightweight `.txt` persistence system.
+*   **Testing Goal:** Mastering basic REST actions and single-object validation logic.
 
-*   **New Entity:** `Address` (Linked to User)
+### 📍 Phase 2: Relational Data & Address Management (In Progress)
+To provide more advanced testing scenarios, I am introducing the **Address** resource. This will allow users to practice testing nested objects and one-to-many relationships.
+
+*   **New Entity:** `Address` (Linked to User).
 *   **Fields:** `id`, `addressType`, `addressLine`, `city`, `state`, `zipCode`, `country`.
-*   **Persistence:** A new `address.txt` file will be added to maintain our "No-DB-required" strategy.
-*   **Testing Opportunity:** This update will introduce scenarios for **referential integrity** (e.g., what happens to addresses when a user is deleted?) and **nested validation**.
+*   **Persistence:** Extending the flat-file system with an `addresses.txt` storage.
+*   **New Testing Opportunities:**
+    *   **Referential Integrity:** Validating behavior when parent/child records are deleted.
+    *   **Nested Validation:** Testing complex JSON payloads with arrays of objects.
+    *   **Logic Mapping:** Ensuring a user can have multiple address types.
 
 ---
 
