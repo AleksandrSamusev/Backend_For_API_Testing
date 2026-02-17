@@ -25,7 +25,7 @@ public class UserServiceImpl {
     }
 
     public List<User> getAllUsers(Optional<SortingOptions> option) {
-        List<User> users = userRepository.readAllUsers();
+        List<User> users = userRepository.readAllUsers(); 
         if (option.isPresent()) {
             if (option.get() == SortingOptions.FIRST_NAME_ASC) {
                 users.sort(Comparator.comparing(User::getFirstName));
