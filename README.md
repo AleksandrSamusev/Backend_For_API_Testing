@@ -5,6 +5,15 @@
 [![Swagger](https://img.shields.io/badge/Swagger-API_Docs-85EA2D?logo=swagger)](https://ratty-merrily-devpractice-8e62228c.koyeb.app/swagger-ui/index.html)
 > **A specialized REST API playground** built as a stable target for both **manual and automated API testing practice**. While the architecture follows professional standards, the project’s heart is to serve as a "live basis" for testers to hone their craft.
 
+## 🚀 How you could use this project
+
+There are several ways to engage with this sandbox depending on your goals:
+
+1.  **Local Development:** [Clone the repository](https://docs.github.com) and run the service locally for full control and real-time debugging.
+2.  **Custom Deployment:** Take the source code and deploy your own instance to cloud platforms like [Koyeb](https://www.koyeb.com), [Render](https://render.com), or [Heroku](https://www.heroku.com).
+3.  **Instant Practice:** Skip the setup and use the live version already hosted on **Koyeb** to start testing immediately against a remote environment.
+    *   **Base URL:** `https://ratty-merrily-devpractice-8e62228c.koyeb.app`
+> **Pro-tip:** Don't be afraid to break something! That's exactly why this exists—if you manage to crash it, we'll just fix it together. ))
 ---
 
 ## 📑 Table of Contents
@@ -55,6 +64,9 @@ To facilitate rapid **API testing and development**, this application utilizes a
 
 *   **Implementation:** Data is stored and managed within a `users.txt` file in the root directory.
 *   **Strategic Advantage:** By opting for a file-based system over a traditional RDBMS (like PostgreSQL), the project eliminates environment-specific setup hurdles, making it an ideal "plug-and-play" sandbox for practicing RESTful API interactions.
+
+> **Why the .txt file?** To be honest, using CSV format in a text file means you don't have to worry about the "Pro" plan or wrestling with SQL persistence. We're keeping it free and simple so you can focus on the tests, not the database configuration! )))
+
 ---
 
 ## 🏗 API Architecture
