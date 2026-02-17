@@ -15,7 +15,7 @@ public class NameValidator implements ConstraintValidator<ValidName, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        context.disableDefaultConstraintViolation();
+        context.disableDefaultConstraintViolation(); 
 
         // --- 1. SANITIZATION ---
         if (value != null) {
