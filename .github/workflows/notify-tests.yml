@@ -1,0 +1,13 @@
+name: Notify Playwright Repo
+on: [push]
+
+jobs:
+  ping-playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send signal to Playwright Repo
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Needs a GitHub PAT
+          repository: AleksandrSamusev/playwright-js-backend-api-automation
+          event-type: trigger-tests
