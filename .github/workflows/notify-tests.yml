@@ -10,4 +10,4 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Needs a GitHub PAT
           repository: AleksandrSamusev/playwright-js-backend-api-automation
-          event-type: trigger-tests
+          event-type: trigger-api-tests
