@@ -117,6 +117,8 @@ Triggered by invalid input or business logic violations. The `data` field is `nu
 
 ---
 
+
+
 ## 📖 Live Documentation
 
 The project is fully self-documenting using Springdoc-OpenAPI. You can explore the endpoints, view data schemas, and execute live requests via the interactive UI.
@@ -129,6 +131,20 @@ The project is fully self-documenting using Springdoc-OpenAPI. You can explore t
 If running the application locally:
 *   Interactive UI: http://localhost:8080/swagger-ui.html
 *   OpenAPI Spec (JSON): http://localhost:8080/v3/api-docs
+
+---
+
+## 🎯 Testing Focus
+
+Since this project is a **QA Sandbox**, the implementation is guided by strict validation rules to provide meaningful testing scenarios.
+
+*   **Requirements:** You can find the detailed functional requirements and validation logic here: [📋 Requirements.md](./REQUIREMENTS.md)
+*   **Test Scenarios:** The project is designed to be validated against 40+ scenarios, covering:
+    *   Positive path (Standard valid data)
+    *   Boundary analysis (Min/Max lengths)
+    *   Security (SQL injection & XSS attempts)
+    *   Data Integrity (Formatting and normalization)
+    *   Contract Testing (Schema validation)
 
 ---
 
