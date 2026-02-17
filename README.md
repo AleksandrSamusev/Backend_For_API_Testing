@@ -1,8 +1,8 @@
 # 🛒 Backend For API Testing Practice
 
-[![Java Version](https://img.shields.io)](https://www.oracle.com)
-[![Spring Boot](https://img.shields.io)](https://spring.io)
-[![Swagger](https://img.shields.io)](https://ratty-merrily-devpractice-8e62228c.koyeb.app)
+[![Java Version](https://img.shields.io/badge/Java-17+-orange?logo=java)](https://www.oracle.com)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?logo=springboot)](https://spring.io)
+[![Swagger](https://img.shields.io/badge/Swagger-API_Docs-85EA2D?logo=swagger)](https://ratty-merrily-devpractice-8e62228c.koyeb.app/swagger-ui/index.html)
 > **A professional RESTful API** for user account management, featuring standardized response wrappers, custom Jakarta validations, and automated OpenAPI 3 documentation.
 
 ---
@@ -54,7 +54,7 @@ The project is fully self-documenting using Springdoc-OpenAPI. You can explore t
 
 > [!IMPORTANT]
 > **Access the Live Swagger UI here:**  
-> 👉 [**https://ratty-merrily-devpractice-8e62228c.koyeb.app**](https://ratty-merrily-devpractice-8e62228c.koyeb.app)
+> 👉 [**LIVE Swagger UI**](https://ratty-merrily-devpractice-8e62228c.koyeb.app/swagger-ui/index.html)
 
 ### Local Documentation
 If running the application locally:
