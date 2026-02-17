@@ -9,10 +9,12 @@
 
 ## 📑 Table of Contents
 1. [Core Features](#-core-features)
-2. [API Architecture](#-api-architecture)
-3. [Live Documentation](#-live-documentation)
-4. [Endpoint Overview](#-endpoint-overview)
-5. [Setup & Installation](#-setup--installation)
+2. [Project Structure](#-project-structure)
+3. [Data Persistence](#-data-persistence)
+4. [API Architecture](#-api-architecture)
+5. [Live Documentation](#-live-documentation)
+6. [Endpoint Overview](#-endpoint-overview)
+7. [Setup & Installation](#-setup--installation)
 
 ---
 
@@ -57,25 +59,47 @@ To facilitate rapid **API testing and development**, this application utilizes a
 
 ## 🏗 API Architecture
 
-### Global Response Wrapper
-The system wraps every response to ensure the frontend always receives a consistent data structure, including metadata and timestamps.
+### Standardized `ApiResponse` Wrapper
 
-**Standard JSON Response Structure:**
+To ensure a contract-first approach for frontend integration, all endpoints utilize a central `ResponseUtil` to wrap data in a consistent `ApiResponse<T>` structure. This guarantees that every request—whether successful or failed—provides a predictable set of metadata, including status flags, timestamps, and request paths.
+
+#### ✅ Successful Response
+Returned when the operation completes as expected. The `data` field contains the requested resource, and `errors` remains `null`.
+
 ```json
 {
   "success": true,
-  "message": "User found",
+  "message": "Success",
   "data": {
-    "id": 101,
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "phoneNumber": "+123456789"
+    "id": 1771332281802,
+    "firstName": "Chicko-Lazy",
+    "lastName": "Honda",
+    "email": "asd1233@tets.test",
+    "phoneNumber": "+17026201348"
   },
   "errors": null,
   "errorCode": 0,
-  "timestamp": 1708174320000,
-  "path": "/api/v1/users/101"
+  "timestamp": 1771332557383,
+  "path": "/api/v1/users/1771332281802"
+}
+```
+#### ❌ Failed Response (Validation Error)
+Triggered by invalid input or business logic violations. The `data` field is `null`, and the `errors` array provides specific details for the client.
+
+```json
+{
+    "success": false,
+    "message": "Validation error",
+    "data": null,
+    "errors": [
+        "First name must only contain letters, hyphens, and spaces",
+        "Please provide a valid email address (e.g., name@domain.com)",
+        "Last name must be between 2 and 50 characters",
+        "Phone number must start with '+' followed by 11 to 15 digits"
+    ],
+    "errorCode": 400,
+    "timestamp": 1771338432585,
+    "path": "/api/v1/users"
 }
 ```
 
