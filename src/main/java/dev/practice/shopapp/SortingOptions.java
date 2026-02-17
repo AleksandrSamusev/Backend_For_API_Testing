@@ -19,5 +19,4 @@ public enum SortingOptions {
     ID_ASC,
     @Schema(description = "Sort by ID in descending order")
     ID_DESC;
-
 }

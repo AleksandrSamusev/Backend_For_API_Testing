@@ -122,15 +122,23 @@ If running the application locally:
 
 ## 🛤 Endpoint Overview
 
-| Method | Endpoint | Description | Request Body |
-| :--- | :--- | :--- | :--- |
-| POST | /api/v1/users | Register a new user | UserCreateDTO |
-| GET | /api/v1/users | List all users (sorted) | None |
-| GET | /api/v1/users/{id} | Get user by unique ID | None |
-| PUT | /api/v1/users/{id} | Update profile details | UserUpdateDTO |
-| DELETE | /api/v1/users/{id} | Remove user account | None |
+> **Note:** Currently, this project focuses exclusively on the **User** entity. This is an intentional design choice to prioritize the depth of **API automation testing** over architectural complexity. The primary objective is to demonstrate comprehensive test coverage and rigorous scenario mapping, ensuring maximum defect detection through high-density test cases.
 
+| Method | Endpoint | Description | Parameters / Request Body |
+| :--- | :--- | :--- | :--- |
+| POST | `/api/v1/users` | Register a new user | **Body:** `UserCreateDTO` |
+| GET | `/api/v1/users?sortBy={option}` | List all users with optional sorting | **Query:** `sortBy` (Default: `ID_ASC`) |
+| GET | `/api/v1/users/{id}` | Get user by unique ID | **Path:** `id` |
+| PUT | `/api/v1/users/{id}` | Update profile details | **Body:** `UserUpdateDTO` |
+| DELETE | `/api/v1/users/{id}` | Remove user account | None |
+
+### 🔍 Sorting Options
+When calling `GET /api/v1/users`, you can apply the `sortBy` query parameter using the following values:
+
+* **Name-based:** `FIRST_NAME_ASC`, `FIRST_NAME_DESC`, `LAST_NAME_ASC`, `LAST_NAME_DESC`
+* **ID-based:** `ID_ASC`, `ID_DESC`
 ---
+
 
 ## ⚙️ Setup & Installation
 
