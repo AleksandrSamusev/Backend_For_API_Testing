@@ -1,4 +1,18 @@
+#name: Notify Playwright Repo
+#on: [push]
+#
+#jobs:
+#  ping-playwright:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Send signal to Playwright Repo
+#        uses: peter-evans/repository-dispatch@v3
+#        with:
+#          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Needs a GitHub PAT
+#          repository: AleksandrSamusev/playwright-js-backend-api-automation
+#          event-type: trigger-api-tests
 name: Notify Playwright Repo
+
 on: [push]
 
 jobs:
@@ -8,6 +22,8 @@ jobs:
       - name: Send signal to Playwright Repo
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Needs a GitHub PAT
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repository: AleksandrSamusev/playwright-js-backend-api-automation
           event-type: trigger-api-tests
+          # This dynamic variable sends 'main' or 'feature/address' automatically
+          client-payload: '{"branch": "${{ github.ref_name }}"}'
