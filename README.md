@@ -3,7 +3,6 @@
 [![Java Version](https://img.shields.io)](https://www.oracle.com)
 [![Spring Boot](https://img.shields.io)](https://spring.io)
 [![Swagger](https://img.shields.io)](https://ratty-merrily-devpractice-8e62228c.koyeb.app)
-
 > **A professional RESTful API** for user account management, featuring standardized response wrappers, custom Jakarta validations, and automated OpenAPI 3 documentation.
 
 ---
