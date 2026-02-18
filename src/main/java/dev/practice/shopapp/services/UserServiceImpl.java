@@ -21,7 +21,7 @@ public class UserServiceImpl {
     private final UserRepository userRepository = new UserRepository();
 
     public User createUser(UserCreateDto dto) {
-        return userRepository.saveUser(dto);
+        return userRepository.saveUser(dto);  
     }
 
     public List<User> getAllUsers(Optional<SortingOptions> option) {
