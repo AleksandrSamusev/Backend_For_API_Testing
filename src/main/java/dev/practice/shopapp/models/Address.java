@@ -7,25 +7,25 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class Address {
-    @NotBlank
-    @Size(min = 5, max = 100)
+    @NotBlank(message = "Street address must not be blank")
+    @Size(min = 5, max = 100, message = "{address.streetAddress.size}")
     @Pattern(regexp = "^[a-zA-Z0-9\\s.-]+$", message = "Street address contains invalid characters")
     private String streetAddress;
-    @Size(max = 50)
+    @Size(max = 50, message = "{address.apartment.size}")
     @Pattern(regexp = "^[a-zA-Z0-9\\s.-]*$", message = "Apartment contains invalid characters")
     private String apartment;
-    @NotBlank
-    @Size(min = 2, max = 50)
+    @NotBlank(message = "City must not be blank")
+    @Size(min = 2, max = 50, message = "{address.city.size}")
     @Pattern(regexp = "^[a-zA-Z\\s.-]+$", message = "City contains invalid characters")
     private String city;
-    @Size(max = 50)
+    @Size(max = 50, message = "{address.state.size}")
     @Pattern(regexp = "^[a-zA-Z\\s.-]*$", message = "State contains invalid characters")
     private String state;
-    @NotBlank
-    @Size(min = 3, max = 10)
+    @NotBlank(message = "Postal Code must not be blank")
+    @Size(min = 3, max = 10, message = "{address.postalCode.size}")
     @Pattern(regexp = "^[A-Z0-9\\s-]+$", message = "Postal code must be uppercase letters, numbers, spaces or hyphens")
     private String postalCode;
-    @NotBlank
+    @NotBlank(message = "Country code must not be blank")
     @Pattern(regexp = "^[A-Z]{2}$", message = "Country code must be exactly 2 uppercase letters")
     private String countryCode;
     private LocalDateTime createdAt;
