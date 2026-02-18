@@ -4,6 +4,7 @@ import dev.practice.shopapp.SortingOptions;
 import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
+import dev.practice.shopapp.models.Address;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -71,10 +72,40 @@ public class UserServiceImpl {
         }
 
         // 3. Update other fields
-        if (dto.getFirstName() != null) targetUser.setFirstName(dto.getFirstName().strip());
-        if (dto.getLastName() != null) targetUser.setLastName(dto.getLastName().strip());
-        if (dto.getPhoneNumber() != null) targetUser.setPhoneNumber(dto.getPhoneNumber().strip());
-
+        if (dto.getFirstName() != null && !dto.getFirstName().isBlank()) {
+            targetUser.setFirstName(dto.getFirstName().strip());
+        }
+        if (dto.getLastName() != null && !dto.getLastName().isBlank()) {
+            targetUser.setLastName(dto.getLastName().strip());
+        }
+        if (dto.getPhoneNumber() != null && !dto.getPhoneNumber().isBlank()) {
+            targetUser.setPhoneNumber(dto.getPhoneNumber().strip());
+        }
+        Address address = targetUser.getAddress();
+        if (address == null) {
+            address = new Address();
+            targetUser.setAddress(address);
+        }
+        if (dto.getAddress() != null) {
+            if (dto.getAddress().getStreetAddress() != null && !dto.getAddress().getStreetAddress().isBlank()) {
+                address.setStreetAddress(dto.getAddress().getStreetAddress());
+            }
+            if (dto.getAddress().getApartment() != null && !dto.getAddress().getApartment().isBlank()) {
+                address.setApartment(dto.getAddress().getApartment());
+            }
+            if (dto.getAddress().getCity() != null && !dto.getAddress().getCity().isBlank()) {
+                address.setCity(dto.getAddress().getCity());
+            }
+            if (dto.getAddress().getState() != null && !dto.getAddress().getState().isBlank()) {
+                address.setState(dto.getAddress().getState());
+            }
+            if (dto.getAddress().getPostalCode() != null && !dto.getAddress().getPostalCode().isBlank()) {
+                address.setPostalCode(dto.getAddress().getPostalCode());
+            }
+            if (dto.getAddress().getCountryCode() != null && !dto.getAddress().getCountryCode().isBlank()) {
+                address.setCountryCode(dto.getAddress().getCountryCode());
+            }
+        }
         userRepository.rewriteAllUsers(users);
         return targetUser;
     }
