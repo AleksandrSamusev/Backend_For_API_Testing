@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 @Schema(description = "Data Transfer Object for creating a new user")
-public class UserCreateDTO {
+public class UserCreateDto {
     @Schema(description = "User's legal first name", example = "John", requiredMode = Schema.RequiredMode.REQUIRED)
     @ValidName(fieldName = "firstname")
     private String firstName;
@@ -24,18 +24,18 @@ public class UserCreateDTO {
     @Schema(description = "User's primary residential address")
     @Valid
     @NotNull(message = "Address details are required")
-    private AddressCreateDTO address = new AddressCreateDTO();
+    private AddressDto address = new AddressDto();
 
-    public UserCreateDTO() {
+    public UserCreateDto() {
     }
 
-    public UserCreateDTO(String firstName, String lastName, String email, String phoneNumber,
-                         AddressCreateDTO address) {
+    public UserCreateDto(String firstName, String lastName, String email, String phoneNumber,
+                         AddressDto address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.address = (address != null) ? address : new AddressCreateDTO();
+        this.address = (address != null) ? address : new AddressDto();
     }
 
     public String getFirstName() {
@@ -73,11 +73,11 @@ public class UserCreateDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public AddressCreateDTO getAddressCreateDTO() {
+    public AddressDto getAddress() {
         return address;
     }
 
-    public void setAddressCreateDTO(AddressCreateDTO addressCreateDTO) {
-        this.address = addressCreateDTO;
+    public void setAddress(AddressDto addressDto) {
+        this.address = addressDto;
     }
 }

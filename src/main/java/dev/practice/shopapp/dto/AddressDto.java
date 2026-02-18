@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class AddressCreateDTO {
+public class AddressDto {
     @NotBlank
     @Size(min = 5, max = 100)
     @Pattern(regexp = "^[a-zA-Z0-9\\s.-]+$", message = "Street address contains invalid characters")
@@ -27,11 +27,11 @@ public class AddressCreateDTO {
     @Pattern(regexp = "^[A-Z]{2}$", message = "Country code must be exactly 2 uppercase letters")
     private String countryCode;
 
-    public AddressCreateDTO() {
+    public AddressDto() {
     }
 
-    public AddressCreateDTO(String streetAddress, String apartment, String city, String state,
-                            String postalCode, String countryCode) {
+    public AddressDto(String streetAddress, String apartment, String city, String state,
+                      String postalCode, String countryCode) {
         this.streetAddress = streetAddress;
         this.apartment = apartment;
         this.city = city;

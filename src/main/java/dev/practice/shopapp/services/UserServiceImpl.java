@@ -1,8 +1,8 @@
 package dev.practice.shopapp.services;
 
 import dev.practice.shopapp.SortingOptions;
-import dev.practice.shopapp.dto.UserCreateDTO;
-import dev.practice.shopapp.dto.UserUpdateDTO;
+import dev.practice.shopapp.dto.UserCreateDto;
+import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
@@ -20,7 +20,7 @@ public class UserServiceImpl {
 
     private final UserRepository userRepository = new UserRepository();
 
-    public User createUser(UserCreateDTO dto) {
+    public User createUser(UserCreateDto dto) {
         return userRepository.saveUser(dto);
     }
 
@@ -46,7 +46,7 @@ public class UserServiceImpl {
         return userRepository.getUserById(userId);
     }
 
-    public User updateUser(Long userId, UserUpdateDTO dto) {
+    public User updateUser(Long userId, UserUpdateDto dto) {
         List<User> users = userRepository.readAllUsers();
 
         // 1. Find the target user

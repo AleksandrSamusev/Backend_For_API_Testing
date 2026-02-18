@@ -1,8 +1,8 @@
 package dev.practice.shopapp.controllers;
 
 import dev.practice.shopapp.SortingOptions;
-import dev.practice.shopapp.dto.UserCreateDTO;
-import dev.practice.shopapp.dto.UserUpdateDTO;
+import dev.practice.shopapp.dto.UserCreateDto;
+import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.services.UserServiceImpl;
@@ -40,7 +40,7 @@ public class UserController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "409", description = "User already exists")
     })
     @PostMapping
-    public ResponseEntity<ApiResponse<User>> createUser(@Valid @RequestBody UserCreateDTO dto,
+    public ResponseEntity<ApiResponse<User>> createUser(@Valid @RequestBody UserCreateDto dto,
                                                         HttpServletRequest request) {
         return new ResponseEntity<>(
                 ResponseUtil.success(userService.createUser(dto),
@@ -93,7 +93,7 @@ public class UserController {
     public ResponseEntity<ApiResponse<User>> updateUser(
             @Parameter(description = "The database ID of the user", example = "1")
             @PathVariable Long userId,
-            @Valid @RequestBody UserUpdateDTO dto,
+            @Valid @RequestBody UserUpdateDto dto,
             HttpServletRequest request) {
         return new ResponseEntity<>(
                 ResponseUtil.success(userService.updateUser(userId, dto),

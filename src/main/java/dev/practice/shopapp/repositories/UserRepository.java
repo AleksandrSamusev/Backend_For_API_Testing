@@ -1,6 +1,6 @@
 package dev.practice.shopapp.repositories;
 
-import dev.practice.shopapp.dto.UserCreateDTO;
+import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.mappers.UserMapper;
 import dev.practice.shopapp.models.User;
@@ -18,7 +18,7 @@ public class UserRepository {
 
     private static final Path filePath = Path.of("users.txt");
 
-    public User saveUser(UserCreateDTO dto) {
+    public User saveUser(UserCreateDto dto) {
         // 1. Sanitize the input email immediately
         String emailToCheck = dto.getEmail().trim().toLowerCase();
 
