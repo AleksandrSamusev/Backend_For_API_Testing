@@ -106,7 +106,7 @@ public class UserServiceImpl {
                 address.setCountryCode(dto.getAddress().getCountryCode());
             }
         }
-        userRepository.rewriteAllUsers(users);
+        userRepository.rewriteAllUsers(users);  
         return targetUser;
     }
 
