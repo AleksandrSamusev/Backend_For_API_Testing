@@ -1,12 +1,10 @@
-package dev.practice.shopapp.models;
+package dev.practice.shopapp.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
-
-public class Address {
+public class AddressCreateDTO {
     @NotBlank
     @Size(min = 5, max = 100)
     @Pattern(regexp = "^[a-zA-Z0-9\\s.-]+$", message = "Street address contains invalid characters")
@@ -28,22 +26,6 @@ public class Address {
     @NotBlank
     @Pattern(regexp = "^[A-Z]{2}$", message = "Country code must be exactly 2 uppercase letters")
     private String countryCode;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    public Address() {
-    }
-
-    public Address(String streetAddress, String apartment, String city, String state, String postalCode, String countryCode, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.streetAddress = streetAddress;
-        this.apartment = apartment;
-        this.city = city;
-        this.state = state;
-        this.postalCode = postalCode;
-        this.countryCode = countryCode;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
 
     public String getStreetAddress() {
         return streetAddress;
@@ -91,21 +73,5 @@ public class Address {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
