@@ -34,7 +34,8 @@ public class Address {
     public Address() {
     }
 
-    public Address(String streetAddress, String apartment, String city, String state, String postalCode, String countryCode, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Address(String streetAddress, String apartment, String city, String state,
+                   String postalCode, String countryCode, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.streetAddress = streetAddress;
         this.apartment = apartment;
         this.city = city;

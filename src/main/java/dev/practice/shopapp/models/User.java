@@ -4,6 +4,7 @@ import dev.practice.shopapp.validation.ValidEmail;
 import dev.practice.shopapp.validation.ValidName;
 import dev.practice.shopapp.validation.ValidPhoneNumber;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 @Schema(description = "User entity representing a registered user in the system")
 public class User {
@@ -22,13 +23,20 @@ public class User {
     @Schema(description = "Contact phone number in international format", example = "+1234567890", requiredMode = Schema.RequiredMode.REQUIRED)
     @ValidPhoneNumber
     private String phoneNumber;
+    @Schema(description = "User's primary residential address")
+    @Valid
+    private Address address = new Address();
 
-    public User(Long id, String firstName, String lastName, String email, String phoneNumber) {
+    public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, String email, String phoneNumber, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.address = (address != null) ? address: new Address();
     }
 
     public Long getId() {
@@ -74,5 +82,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public Address getAddress() {
+        return address;
+    }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

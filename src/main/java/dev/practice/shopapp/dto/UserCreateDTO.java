@@ -4,7 +4,8 @@ import dev.practice.shopapp.validation.ValidEmail;
 import dev.practice.shopapp.validation.ValidName;
 import dev.practice.shopapp.validation.ValidPhoneNumber;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @Schema(description = "Data Transfer Object for creating a new user")
 public class UserCreateDTO {
@@ -20,6 +21,22 @@ public class UserCreateDTO {
     @Schema(description = "Contact phone number in international format", example = "+1234567890", requiredMode = Schema.RequiredMode.REQUIRED)
     @ValidPhoneNumber
     private String phoneNumber;
+    @Schema(description = "User's primary residential address")
+    @Valid
+    @NotNull(message = "Address details are required")
+    private AddressCreateDTO address = new AddressCreateDTO();
+
+    public UserCreateDTO() {
+    }
+
+    public UserCreateDTO(String firstName, String lastName, String email, String phoneNumber,
+                         AddressCreateDTO address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = (address != null) ? address : new AddressCreateDTO();
+    }
 
     public String getFirstName() {
         return firstName;
@@ -54,5 +71,13 @@ public class UserCreateDTO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public AddressCreateDTO getAddressCreateDTO() {
+        return address;
+    }
+
+    public void setAddressCreateDTO(AddressCreateDTO addressCreateDTO) {
+        this.address = addressCreateDTO;
     }
 }

@@ -27,6 +27,19 @@ public class AddressCreateDTO {
     @Pattern(regexp = "^[A-Z]{2}$", message = "Country code must be exactly 2 uppercase letters")
     private String countryCode;
 
+    public AddressCreateDTO() {
+    }
+
+    public AddressCreateDTO(String streetAddress, String apartment, String city, String state,
+                            String postalCode, String countryCode) {
+        this.streetAddress = streetAddress;
+        this.apartment = apartment;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
+        this.countryCode = countryCode;
+    }
+
     public String getStreetAddress() {
         return streetAddress;
     }
