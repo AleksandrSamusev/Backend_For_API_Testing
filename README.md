@@ -80,19 +80,29 @@ Returned when the operation completes as expected. The `data` field contains the
 
 ```json
 {
-  "success": true,
-  "message": "Success",
   "data": {
-    "id": 1771332281802,
-    "firstName": "Chicko-Lazy",
+    "id": 1771457131827,
+    "firstName": "Bernardo",
     "lastName": "Honda",
-    "email": "asd1233@tets.test",
-    "phoneNumber": "+17026201348"
+    "email": "bernardo.honda@test.jp",
+    "phoneNumber": "+17026201348",
+    "address": {
+      "streetAddress": "123 Providence Rd",
+      "apartment": "4B",
+      "city": "Charlotte",
+      "state": "North Carolina",
+      "postalCode": "28211",
+      "countryCode": "US",
+      "createdAt": "2026-02-18T23:25:31.828563269",
+      "updatedAt": "2026-02-18T23:25:31.828563269"
+    }
   },
-  "errors": null,
   "errorCode": 0,
-  "timestamp": 1771332557383,
-  "path": "/api/v1/users/1771332281802"
+  "errors": null,
+  "message": "User successfully created",
+  "path": "/api/v1/users",
+  "success": true,
+  "timestamp": 1771457132026
 }
 ```
 #### ❌ Failed Response (Validation Error)
@@ -185,22 +195,22 @@ When calling `GET /api/v1/users`, you can apply the `sortBy` query parameter usi
 
 This sandbox is evolving from a simple single-entity API to a more complex system to provide diverse testing challenges.
 
-### ✅ Phase 1: Core User Management (Current)
+### ✅ Phase 1: Core User Management
 *   **Status:** Completed
 *   **Focus:** Establishing the foundation.
-*   **Features:** Full CRUD for the `User` entity, custom Jakarta validation, automated OpenAPI documentation, and the lightweight `.txt` persistence system.
+*   **Features:** Full CRUD for the User entity, custom Jakarta validation, automated OpenAPI documentation, and the lightweight `.txt` persistence system.
 *   **Testing Goal:** Mastering basic REST actions and single-object validation logic.
 
-### 📍 Phase 2: Relational Data & Address Management (In Progress)
-To provide more advanced testing scenarios, I am introducing the **Address** resource. This will allow users to practice testing nested objects and one-to-many relationships.
+### ✅ Phase 2: Relational Data & Address Management (Current) 🟢
+To provide more advanced testing scenarios, I've added  the **Address** object. This allows users to practice testing nested objects and one-to-one relationships within a single record.
 
 *   **New Entity:** `Address` (Linked to User).
-*   **Fields:** `id`, `addressType`, `addressLine`, `city`, `state`, `zipCode`, `country`.
-*   **Persistence:** Extending the flat-file system with an `addresses.txt` storage.
+*   **Fields:** `streetAddress`, `apartment`, `city`, `state`, `postalCode`, `countryCode`, `createdAt`, `updtedAt`.
+*   **Persistence:** Updated the flat-file system to store combined User and Address data within the same `users.txt` file.
 *   **New Testing Opportunities:**
-    *   **Referential Integrity:** Validating behavior when parent/child records are deleted.
-    *   **Nested Validation:** Testing complex JSON payloads with arrays of objects.
-    *   **Logic Mapping:** Ensuring a user can have multiple address types.
+    *   **Nested Validation:** Testing complex JSON payloads with mandatory and optional address fields.
+    *   **Data Integrity:** Validating behavior when updating full user profiles including geographic data.
+    *   **Format Constraints:** Mastering Regex-based testing for postal and country codes.
 
 ---
 
