@@ -1,4 +1,4 @@
-package dev.practice.shopapp.services;
+package dev.practice.shopapp.services.impl;
 
 import dev.practice.shopapp.SortingOptions;
 import dev.practice.shopapp.dto.UserCreateDto;
@@ -7,6 +7,8 @@ import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.models.Address;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
+import dev.practice.shopapp.repositories.impl.json.JsonUserRepository;
+import dev.practice.shopapp.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,38 +19,34 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository = new UserRepository();
+    private final JsonUserRepository jsonUserRepository = new JsonUserRepository();
 
     public User createUser(UserCreateDto dto) {
-        return userRepository.saveUser(dto);
+        return jsonUserRepository.saveUser(dto);
     }
 
-    public List<User> getAllUsers(Optional<SortingOptions> option) {
-        List<User> users = userRepository.readAllUsers();
-        if (option.isPresent()) {
-            if (option.get() == SortingOptions.FIRST_NAME_ASC) {
-                users.sort(Comparator.comparing(User::getFirstName));
-            } else if (option.get() == SortingOptions.FIRST_NAME_DESC) {
-                users.sort(Comparator.comparing(User::getFirstName).reversed());
-            } else if (option.get() == SortingOptions.LAST_NAME_ASC) {
-                users.sort(Comparator.comparing(User::getLastName));
-            } else if (option.get() == SortingOptions.LAST_NAME_DESC) {
-                users.sort(Comparator.comparing(User::getLastName).reversed());
-            } else if (option.get() == SortingOptions.ID_DESC) {
-                users.sort(Comparator.comparing(User::getId).reversed());
-            }
+    public List<User> getAllUsers(SortingOptions option) {
+        List<User> users = jsonUserRepository.readAllUsers();
+
+        switch (option) {
+            case FIRST_NAME_ASC -> users.sort(Comparator.comparing(User::getFirstName));
+            case FIRST_NAME_DESC -> users.sort(Comparator.comparing(User::getFirstName).reversed());
+            case LAST_NAME_ASC -> users.sort(Comparator.comparing(User::getLastName));
+            case LAST_NAME_DESC -> users.sort(Comparator.comparing(User::getLastName).reversed());
+            case ID_DESC -> users.sort(Comparator.comparing(User::getId).reversed());
         }
+
         return users;
     }
 
     public User getUserById(Long userId) {
-        return userRepository.getUserById(userId);
+        return jsonUserRepository.getUserById(userId);
     }
 
     public User updateUser(Long userId, UserUpdateDto dto) {
-        List<User> users = userRepository.readAllUsers();
+        List<User> users = jsonUserRepository.readAllUsers();
 
         // 1. Find the target user
         User targetUser = users.stream()
@@ -106,12 +104,12 @@ public class UserServiceImpl {
                 address.setCountryCode(dto.getAddress().getCountryCode());
             }
         }
-        userRepository.rewriteAllUsers(users);
+        jsonUserRepository.rewriteAllUsers(users);
         return targetUser;
     }
 
-    public String deleteUser(Long userId) {  
-        userRepository.deleteUser(userId);
+    public String deleteUser(Long userId) {
+        jsonUserRepository.deleteUser(userId);
         return "User with ID: " + userId + " successfully deleted";
     }
 }

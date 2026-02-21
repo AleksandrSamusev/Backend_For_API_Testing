@@ -5,7 +5,7 @@ import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
-import dev.practice.shopapp.services.UserServiceImpl;
+import dev.practice.shopapp.services.impl.UserServiceImpl;
 import dev.practice.shopapp.utils.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -62,7 +62,7 @@ public class UserController {
                     required = false,
                     schema = @Schema(implementation = SortingOptions.class, defaultValue = "ID_ASC")
             )
-            @RequestParam(defaultValue = "ID_ASC", required = false) Optional<SortingOptions> sortBy) {
+            @RequestParam(defaultValue = "ID_ASC", required = false) SortingOptions sortBy) {
         return new ResponseEntity<>(
                 ResponseUtil.success(userService.getAllUsers(sortBy),
                         "Success",
