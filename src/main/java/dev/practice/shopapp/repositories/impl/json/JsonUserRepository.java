@@ -6,7 +6,9 @@ import dev.practice.shopapp.mappers.UserMapper;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
 import dev.practice.shopapp.utils.Utils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
@@ -15,9 +17,11 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 
+@Repository
+@RequiredArgsConstructor
 public class JsonUserRepository implements UserRepository {
 
-    private static final Path filePath = Path.of("users.txt");
+    private final Path filePath = Path.of("users.txt");
 
     public User saveUser(UserCreateDto dto) {
         // 1. Sanitize the input email immediately

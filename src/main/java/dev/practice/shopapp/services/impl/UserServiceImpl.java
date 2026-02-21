@@ -9,6 +9,7 @@ import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.UserRepository;
 import dev.practice.shopapp.repositories.impl.json.JsonUserRepository;
 import dev.practice.shopapp.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,9 +20,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final JsonUserRepository jsonUserRepository = new JsonUserRepository();
+    private final JsonUserRepository jsonUserRepository;
 
     public User createUser(UserCreateDto dto) {
         return jsonUserRepository.saveUser(dto);

@@ -5,6 +5,7 @@ import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.models.ApiResponse;
 import dev.practice.shopapp.models.User;
+import dev.practice.shopapp.services.UserService;
 import dev.practice.shopapp.services.impl.UserServiceImpl;
 import dev.practice.shopapp.utils.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +26,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
 @Tag(name = "User Management", description = "Operations for onboarding, updating, and managing system users")
 public class UserController {
 
-    private final UserServiceImpl userService = new UserServiceImpl();
+    private final UserService userService;
+
     @Operation(
             summary = "Create a new user",
             description = "Validates input and persists a new user to the database."

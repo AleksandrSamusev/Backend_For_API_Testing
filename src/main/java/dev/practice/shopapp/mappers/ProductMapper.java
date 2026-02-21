@@ -1,12 +1,15 @@
 package dev.practice.shopapp.mappers;
 
 import dev.practice.shopapp.dto.ProductCreateRequest;
+import dev.practice.shopapp.dto.ProductResponse;
 import dev.practice.shopapp.models.Product;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class ProductMapper {
-    public static Product toProduct(ProductCreateRequest dto) {
+    public Product toProduct(ProductCreateRequest dto) {
         if(dto == null) {
             return null;
         }
@@ -28,6 +31,27 @@ public class ProductMapper {
                 .createdBy(dto.getCreatedBy())
                 .createdAt(LocalDateTime.now())
                 .version(0L)
+                .build();
+    }
+
+    public ProductResponse toProductResponse(Product product) {
+        if(product == null) {
+            return null;
+        }
+        return ProductResponse.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .category(product.getCategory())
+                .manufacturer(product.getManufacturer())
+                .price(product.getPrice())
+                .salePrice(product.getSalePrice())
+                .currencyCode(product.getCurrencyCode())
+                .sku(product.getSku())
+                .quantityInStock(product.getQuantityInStock())
+                .expectedAvailabilityDate(product.getExpectedAvailabilityDate())
+                .attributes(product.getAttributes())
+                .imageUrl(product.getImageUrl())
+                .status(product.getStatus())
                 .build();
     }
 }
