@@ -5,5 +5,6 @@ public enum AvailabilityStatus {
     OUT_OF_STOCK,
     PREORDER,
     BACKORDER,
-    DISCONTINUED
+    DISCONTINUED,
+    ARCHIVED
 }

@@ -50,4 +50,30 @@
   "updatedAt" : null,
   "updatedBy" : null,
   "version" : 0
+}, {
+  "id" : 1771713193792,
+  "name" : "Kettle",
+  "category" : "Kitchen",
+  "manufacturer" : "Deco",
+  "price" : 11.50,
+  "costPrice" : 10.00,
+  "salePrice" : 11.00,
+  "currencyCode" : "USD",
+  "sku" : "KT-WT-1234",
+  "quantityInStock" : 0,
+  "lowStockThreshold" : 1,
+  "expectedAvailabilityDate" : "2026-12-31T23:59:59",
+  "attributes" : {
+    "color" : "White",
+    "pattern" : "Dragon",
+    "collection" : "Big City",
+    "tags" : [ "home", "soft", "lazy" ]
+  },
+  "imageUrl" : "https://example.com/products/blanket.jpg",
+  "status" : "OUT_OF_STOCK",
+  "createdAt" : "2026-02-21T23:33:13.7925817",
+  "createdBy" : "Alex Brown",
+  "updatedAt" : null,
+  "updatedBy" : null,
+  "version" : 0
 } ]

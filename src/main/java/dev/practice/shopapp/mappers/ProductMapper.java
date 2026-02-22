@@ -2,6 +2,7 @@ package dev.practice.shopapp.mappers;
 
 import dev.practice.shopapp.dto.ProductCreateRequest;
 import dev.practice.shopapp.dto.ProductResponse;
+import dev.practice.shopapp.dto.ProductUpdateRequest;
 import dev.practice.shopapp.models.Product;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @Component
 public class ProductMapper {
     public Product toProduct(ProductCreateRequest dto) {
-        if(dto == null) {
+        if (dto == null) {
             return null;
         }
         return Product.builder()
@@ -35,7 +36,7 @@ public class ProductMapper {
     }
 
     public ProductResponse toProductResponse(Product product) {
-        if(product == null) {
+        if (product == null) {
             return null;
         }
         return ProductResponse.builder()
@@ -52,6 +53,19 @@ public class ProductMapper {
                 .attributes(product.getAttributes())
                 .imageUrl(product.getImageUrl())
                 .status(product.getStatus())
+                .version(product.getVersion())
                 .build();
+    }
+
+    public void toProductFromUpdateRequest(ProductUpdateRequest dto, Product product) {
+        product.setName(dto.getName());
+        product.setCategory(dto.getCategory());
+        product.setManufacturer(dto.getManufacturer());
+        product.setPrice(dto.getPrice());
+        product.setCostPrice(dto.getCostPrice());
+        product.setSalePrice(dto.getSalePrice());
+        product.setCurrencyCode(dto.getCurrencyCode());
+        product.setLowStockThreshold(dto.getLowStockThreshold());
+        product.setImageUrl(dto.getImageUrl());
     }
 }

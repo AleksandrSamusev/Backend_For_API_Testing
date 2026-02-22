@@ -135,6 +135,13 @@ public class Product {
         this.status = AvailabilityStatus.BACKORDER;
         this.expectedAvailabilityDate = restockDate;
     }
+
+    public Product deleteProduct(String performingUser) {
+        this.setStatus(AvailabilityStatus.ARCHIVED);
+        this.setUpdatedAt(LocalDateTime.now());
+        this.setUpdatedBy(performingUser);
+        return this;
+    }
 }
 
 

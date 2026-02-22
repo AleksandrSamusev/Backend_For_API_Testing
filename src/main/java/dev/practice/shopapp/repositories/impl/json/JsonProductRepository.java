@@ -13,6 +13,7 @@ import java.io.File;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -80,6 +81,17 @@ public class JsonProductRepository implements ProductRepository {
             return objectMapper.readValue(file, new TypeReference<List<Product>>() {});
         } catch (Exception e) {
             throw new RuntimeException("Failed to read JSON storage: " + e.getMessage(), e);
+        }
+    }
+
+    public Optional<Product> findById(Long id) {
+        readLock.lock();
+        try {
+            return readDataFromFile().stream()
+                    .filter(p -> p.getId().equals(id))
+                    .findFirst();
+        } finally {
+            readLock.unlock();
         }
     }
 }

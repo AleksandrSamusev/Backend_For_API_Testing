@@ -27,4 +27,5 @@ public class ProductResponse {
     private Map<String, Object> attributes = new HashMap<>();
     private String imageUrl;
     private AvailabilityStatus status;
+    private Long version = 0L;
 }

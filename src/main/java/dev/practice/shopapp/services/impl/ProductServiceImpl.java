@@ -2,16 +2,22 @@ package dev.practice.shopapp.services.impl;
 
 import dev.practice.shopapp.dto.ProductCreateRequest;
 import dev.practice.shopapp.dto.ProductResponse;
+import dev.practice.shopapp.dto.ProductUpdateRequest;
+import dev.practice.shopapp.enums.AvailabilityStatus;
+import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.mappers.ProductMapper;
 import dev.practice.shopapp.models.Product;
 import dev.practice.shopapp.repositories.ProductRepository;
 import dev.practice.shopapp.services.ProductService;
+import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -32,8 +38,50 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getProducts() {
-        List<Product> products = productRepository.findAll();
-        return products.stream().map(mapper::toProductResponse).toList();
+        return productRepository.findAll().stream()
+                .filter(i -> i.getStatus() != AvailabilityStatus.ARCHIVED)
+                .map(mapper::toProductResponse)
+                .toList();
+    }
+
+    @Override
+    public ProductResponse getProductById(Long id) {
+        return productRepository.findAll().stream()
+                .filter(i -> Objects.equals(i.getId(), id))
+                .filter(i -> i.getStatus() != AvailabilityStatus.ARCHIVED)
+                .findFirst()
+                .map(mapper::toProductResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with given id: " + id));
+    }
+
+    @Override
+    public String deleteProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with given id: " + id));
+        productRepository.save(product.deleteProduct("SYSTEM"));
+        return "Product with id: " + id + " successfully deleted";
+    }
+
+    @Override
+    public ProductResponse updateProduct(ProductUpdateRequest dto, Long id) {
+        Product existing = productRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product with id: " + id + " not found"));
+
+        if (!existing.getVersion().equals(dto.getVersion())) {
+            throw new OptimisticLockException("Product was updated by another user. Please refresh.");
+        }
+        mapper.toProductFromUpdateRequest(dto, existing);
+        existing.setAttributes(sanitizeAndTrimAttributes(dto.getAttributes()));
+        existing.updateStock(dto.getQuantityInStock());
+        if(dto.getStatus()==AvailabilityStatus.BACKORDER) {
+            existing.startBackorder(dto.getExpectedAvailabilityDate());
+        } else if (dto.getStatus()==AvailabilityStatus.PREORDER) {
+            existing.startPreorder(dto.getExpectedAvailabilityDate());
+        }
+        existing.setVersion(existing.getVersion() + 1);
+        existing.setUpdatedBy("SYSTEM");
+        existing.setUpdatedAt(LocalDateTime.now());
+        return mapper.toProductResponse(productRepository.save(existing));
     }
 
     private Map<String, Object> sanitizeAndTrimAttributes(Map<String, Object> original) {
@@ -74,7 +122,8 @@ public class ProductServiceImpl implements ProductService {
                         .map(item -> {
                             if (item instanceof String s) {
                                 String ts = s.trim();
-                                if (!ts.matches(valueRegex)) throw new IllegalArgumentException("Unsafe string in list: " + ts);
+                                if (!ts.matches(valueRegex))
+                                    throw new IllegalArgumentException("Unsafe string in list: " + ts);
                                 return ts;
                             }
                             return item;
