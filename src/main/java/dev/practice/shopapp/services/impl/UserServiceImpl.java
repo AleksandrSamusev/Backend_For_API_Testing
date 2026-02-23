@@ -1,12 +1,11 @@
 package dev.practice.shopapp.services.impl;
 
-import dev.practice.shopapp.SortingOptions;
+import dev.practice.shopapp.enums.SortingOptions;
 import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.models.Address;
 import dev.practice.shopapp.models.User;
-import dev.practice.shopapp.repositories.UserRepository;
 import dev.practice.shopapp.repositories.impl.json.JsonUserRepository;
 import dev.practice.shopapp.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

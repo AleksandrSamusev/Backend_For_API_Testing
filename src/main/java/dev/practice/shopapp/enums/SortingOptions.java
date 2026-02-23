@@ -1,4 +1,4 @@
-package dev.practice.shopapp;
+package dev.practice.shopapp.enums;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

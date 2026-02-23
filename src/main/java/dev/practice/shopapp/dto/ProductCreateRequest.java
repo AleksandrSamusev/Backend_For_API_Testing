@@ -18,17 +18,17 @@ import java.util.Map;
 @Builder
 public class ProductCreateRequest {
     @NotBlank(message = "{product.name.required}")
-    @Pattern(regexp = "^[\\p{L}\\p{N}\\s\\-_/\\\\.()&'!]+$", message = "{product.name.invalid}")
+    @Pattern(regexp = "^[a-zA-Z .-]+$", message = "{product.name.invalid}")
     @Size(min = 2, max = 150, message = "{product.name.size}")
     private String name;
 
     @NotBlank(message = "{product.category.required}")
     @Size(min = 2, max = 50, message = "{product.category.size}")
-    @Pattern(regexp = "^[\\p{L}\\p{N}\\s\\-_/&'.()]+$", message = "{product.category.invalid}")
+    @Pattern(regexp = "^[a-zA-Z0-9\\s\\-_/&'.()]+$", message = "{product.category.invalid}")
     private String category;
 
     @NotBlank(message = "{product.manufacturer.required}")
-    @Pattern(regexp = "^[\\p{L}\\p{N}\\s\\-_/\\\\.()&'!]+$", message = "{product.manufacturer.invalid}")
+    @Pattern(regexp = "^[a-zA-Z0-9\\s\\-_/&'.()]+$", message = "{product.manufacturer.invalid}")
     @Size(min = 2, max = 150, message = "{product.manufacturer.size}")
     private String manufacturer;
 
@@ -65,6 +65,7 @@ public class ProductCreateRequest {
 
     @NotNull(message = "{product.threshold.require}")
     @Min(value = 1, message = "{product.threshold.min}")
+    @Max(value = 999999, message = "{product.threshold.max}")
     private Integer lowStockThreshold;
 
     @Future(message = "{product.availabilityDate.future}")
@@ -74,7 +75,8 @@ public class ProductCreateRequest {
     @Builder.Default // Prevents builder from nullifying your map
     private Map<String, Object> attributes = new HashMap<>();
 
-    @URL(message = "{product.imageUrl.invalid}")
+    @URL(regexp = "^(https?|ftp|file):\\/\\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)?((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}))(:[0-9]+)?(\\/.*)?$",
+            message = "{product.imageUrl.invalid}")
     private String imageUrl;
 
     @NotNull(message = "{product.status.required}")

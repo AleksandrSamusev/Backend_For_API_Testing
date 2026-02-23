@@ -15,21 +15,21 @@ public class ProductMapper {
             return null;
         }
         return Product.builder()
-                .name(dto.getName())
-                .category(dto.getCategory())
-                .manufacturer(dto.getManufacturer())
+                .name(safeStrip(dto.getName()))
+                .category(safeStrip(dto.getCategory()))
+                .manufacturer(safeStrip(dto.getManufacturer()))
                 .price(dto.getPrice())
                 .costPrice(dto.getCostPrice())
                 .salePrice(dto.getSalePrice())
-                .currencyCode(dto.getCurrencyCode())
-                .sku(dto.getSku())
+                .currencyCode(safeStrip(dto.getCurrencyCode()))
+                .sku(safeStrip(dto.getSku()))
                 .quantityInStock(dto.getQuantityInStock())
                 .lowStockThreshold(dto.getLowStockThreshold())
                 .expectedAvailabilityDate(dto.getExpectedAvailabilityDate())
                 .attributes(dto.getAttributes())
-                .imageUrl(dto.getImageUrl())
+                .imageUrl(safeStrip(dto.getImageUrl()))
                 .status(dto.getStatus())
-                .createdBy(dto.getCreatedBy())
+                .createdBy(safeStrip(dto.getCreatedBy()))
                 .createdAt(LocalDateTime.now())
                 .version(0L)
                 .build();
@@ -58,14 +58,18 @@ public class ProductMapper {
     }
 
     public void toProductFromUpdateRequest(ProductUpdateRequest dto, Product product) {
-        product.setName(dto.getName());
-        product.setCategory(dto.getCategory());
-        product.setManufacturer(dto.getManufacturer());
+        product.setName(safeStrip(dto.getName()));
+        product.setCategory(safeStrip(dto.getCategory()));
+        product.setManufacturer(safeStrip(dto.getManufacturer()));
         product.setPrice(dto.getPrice());
         product.setCostPrice(dto.getCostPrice());
         product.setSalePrice(dto.getSalePrice());
-        product.setCurrencyCode(dto.getCurrencyCode());
+        product.setCurrencyCode(safeStrip(dto.getCurrencyCode()));
         product.setLowStockThreshold(dto.getLowStockThreshold());
-        product.setImageUrl(dto.getImageUrl());
+        product.setImageUrl(safeStrip(dto.getImageUrl()));
+    }
+
+    private String safeStrip(String value) {
+        return value != null ? value.strip() : null;
     }
 }

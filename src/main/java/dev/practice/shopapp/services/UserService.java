@@ -1,6 +1,6 @@
 package dev.practice.shopapp.services;
 
-import dev.practice.shopapp.SortingOptions;
+import dev.practice.shopapp.enums.SortingOptions;
 import dev.practice.shopapp.dto.UserCreateDto;
 import dev.practice.shopapp.dto.UserUpdateDto;
 import dev.practice.shopapp.models.User;
