@@ -12,6 +12,10 @@ import jakarta.persistence.OptimisticLockException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
@@ -26,19 +30,32 @@ public class JpaProductService implements ProductService {
     private final ProductMapper mapper;
 
     @Override
-    public Product createProduct(ProductCreateRequest dto) {
+    public ProductResponse createProduct(ProductCreateRequest dto) {
+
         Product product = mapper.toProduct(dto);
         product.setAttributes(sanitizeAndTrimAttributes(dto.getAttributes()));
         Product savedProduct = productRepository.save(product);
         log.info("Product created with SKU: {}", savedProduct.getSku());
-        return savedProduct;
+        return mapper.toProductResponse(savedProduct);
     }
 
     @Override
-    public List<ProductResponse> getProducts() {
-        return productRepository.findAll().stream()
-                .map(mapper::toProductResponse)
-                .toList();
+    public Page<ProductResponse> getProducts(String search, int page, int size, String sort) {
+        // 1. Create Pageable (Default to newest first)
+        // PRO-TIP: You can expand this to parse 'id,asc' or 'price,desc' later
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
+
+        Page<Product> productPage;
+
+        // 2. The "Raptor Hunt": Search or Fetch All
+        if (search != null && !search.trim().isEmpty()) {
+            productPage = productRepository.findBySearchTerm(search.toLowerCase(), pageable);
+        } else {
+            productPage = productRepository.findAll(pageable);
+        }
+
+        // 3. Map to DTOs while preserving the Page metadata (totalPages, totalElements)
+        return productPage.map(mapper::toProductResponse);
     }
 
     @Override

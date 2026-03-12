@@ -16,7 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class ProductUpdateRequest {
-    @Pattern(regexp = "^[a-zA-Z .-]+$", message = "{product.name.invalid}")
+    @Pattern(regexp = "^[a-zA-Z0-9 .-]+$", message = "{product.name.invalid}")
     @Size(min = 2, max = 150, message = "{product.name.size}")
     private String name;
 
@@ -59,7 +59,11 @@ public class ProductUpdateRequest {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, Object> attributes;
 
-    @URL(message = "{product.imageUrl.invalid}")
+    @Pattern(
+            // Allows standard http/https URLs OR Base64 data URIs
+            regexp = "^(https?|ftp|file):\\/\\/.*|^data:image\\/(png|jpeg|jpg|webp);base64,.*",
+            message = "{product.imageUrl.invalid}"
+    )
     private String imageUrl;
 
     private AvailabilityStatus status;

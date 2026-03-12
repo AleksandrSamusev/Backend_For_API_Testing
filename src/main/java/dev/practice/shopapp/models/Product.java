@@ -29,7 +29,7 @@ public class Product {
     private Long id;
 
     @NotBlank(message = "{product.name.required}")
-    @Pattern(regexp = "^[a-zA-Z .-]+$", message = "{product.name.invalid}")
+    @Pattern(regexp = "^[a-zA-Z0-9 .-]+$", message = "{product.name.invalid}")
     @Size(min = 2, max = 150, message = "{product.name.size}")
     @Column(name = "name", nullable = false, length = 150)
     private String name;
@@ -101,7 +101,12 @@ public class Product {
     @Column(name = "attributes", columnDefinition = "jsonb")
     private Map<String, Object> attributes = new HashMap<>();
 
-    @URL(regexp = "^(https?|ftp|file):\\/\\/.*", message = "{product.imageUrl.invalid}")
+
+    @Pattern(
+            // Allows standard http/https URLs OR Base64 data URIs
+            regexp = "^(https?|ftp|file):\\/\\/.*|^data:image\\/(png|jpeg|jpg|webp);base64,.*",
+            message = "{product.imageUrl.invalid}"
+    )
     @Column(name = "image_url", columnDefinition = "text")
     private String imageUrl;
 

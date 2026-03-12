@@ -18,7 +18,7 @@ import java.util.Map;
 @Builder
 public class ProductCreateRequest {
     @NotBlank(message = "{product.name.required}")
-    @Pattern(regexp = "^[a-zA-Z .-]+$", message = "{product.name.invalid}")
+    @Pattern(regexp = "^[a-zA-Z0-9 .-]+$", message = "{product.name.invalid}")
     @Size(min = 2, max = 150, message = "{product.name.size}")
     private String name;
 
@@ -75,8 +75,11 @@ public class ProductCreateRequest {
     @Builder.Default // Prevents builder from nullifying your map
     private Map<String, Object> attributes = new HashMap<>();
 
-    @URL(regexp = "^(https?|ftp|file):\\/\\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)?((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}))(:[0-9]+)?(\\/.*)?$",
-            message = "{product.imageUrl.invalid}")
+    @Pattern(
+            // Allows standard http/https URLs OR Base64 data URIs
+            regexp = "^(https?|ftp|file):\\/\\/.*|^data:image\\/(png|jpeg|jpg|webp);base64,.*",
+            message = "{product.imageUrl.invalid}"
+    )
     private String imageUrl;
 
     @NotNull(message = "{product.status.required}")
