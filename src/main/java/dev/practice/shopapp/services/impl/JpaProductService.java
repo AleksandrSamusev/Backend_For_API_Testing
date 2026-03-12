@@ -75,6 +75,20 @@ public class JpaProductService implements ProductService {
     }
 
     @Override
+    public Map<String, Object> getInventoryStats() {
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalSkus", productRepository.count());
+        stats.put("lowStockCount", productRepository.countLowStockItems());
+        stats.put("totalValue", productRepository.calculateTotalInventoryValue());
+        //Get the most expensive "Showcase" item
+        productRepository.findAll(PageRequest.of(0, 1, Sort.by(Sort.Direction.DESC, "price")))
+                .getContent().stream().findFirst()
+                .ifPresent(p -> stats.put("topSeller", p.getName()));
+
+        return stats;
+    }
+
+    @Override
     public ProductResponse updateProduct(ProductUpdateRequest dto, Long id) {
         Product existing = productRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Product with id: " + id + " not found"));
@@ -96,6 +110,9 @@ public class JpaProductService implements ProductService {
 
         return mapper.toProductResponse(productRepository.save(existing));
     }
+
+
+
 
     private Map<String, Object> sanitizeAndTrimAttributes(Map<String, Object> original) {
         if (original == null || original.isEmpty()) {

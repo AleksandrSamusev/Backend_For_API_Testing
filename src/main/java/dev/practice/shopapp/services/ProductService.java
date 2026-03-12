@@ -5,6 +5,8 @@ import dev.practice.shopapp.dto.ProductResponse;
 import dev.practice.shopapp.dto.ProductUpdateRequest;
 import org.springframework.data.domain.Page;
 
+import java.util.Map;
+
 // 1. You can remove the 'Product' and 'List' imports if they aren't used elsewhere
 public interface ProductService {
 
@@ -18,4 +20,6 @@ public interface ProductService {
     ProductResponse updateProduct(ProductUpdateRequest dto, Long id);
 
     String deleteProductById(Long id);
+
+    Map<String, Object> getInventoryStats();
 }

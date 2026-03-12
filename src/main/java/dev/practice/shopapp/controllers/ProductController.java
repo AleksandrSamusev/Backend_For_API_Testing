@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -86,6 +87,18 @@ public class ProductController {
                 ResponseUtil.success(productService.updateProduct(dto, id),
                         "Success",
                         request.getRequestURI()), HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getInventoryStats(HttpServletRequest request) {
+        return new ResponseEntity<>(
+                ResponseUtil.success(
+                        productService.getInventoryStats(),
+                        "Inventory metrics retrieved",
+                        request.getRequestURI()
+                ),
+                HttpStatus.OK
         );
     }
 }
