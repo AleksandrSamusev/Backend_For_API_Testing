@@ -13,10 +13,9 @@ public class ProductMapper {
     public Product toProduct(ProductCreateRequest dto) {
         if (dto == null) return null;
 
-        // Use standard instantiation to ensure Smart Setters trigger
         Product product = new Product();
 
-        // Basic Fields
+        // 1. Standard Fields
         product.setName(safeStrip(dto.getName()));
         product.setCategory(safeStrip(dto.getCategory()));
         product.setManufacturer(safeStrip(dto.getManufacturer()));
@@ -29,15 +28,14 @@ public class ProductMapper {
         product.setImageUrl(safeStrip(dto.getImageUrl()));
         product.setAttributes(dto.getAttributes());
         product.setCreatedBy(safeStrip(dto.getCreatedBy()));
-        product.setUpdatedBy(safeStrip(dto.getCreatedBy())); // Initial set
+        product.setUpdatedBy(safeStrip(dto.getCreatedBy()));
 
-        // Trigger Smart Logic
-        // We set status FIRST so updateStock knows if it's a special state
-        if (dto.getStatus() != null) {
-            // Note: If setStatus is still private, use the logic below from update method
-            product.setQuantityInStock(dto.getQuantityInStock());
-        }
+        // 2. TRIGGER SMART LOGIC (The "Raptor" Move)
+        // By setting quantity here, the Entity's setQuantityInStock()
+        // automatically determines if status is IN_STOCK or OUT_OF_STOCK.
+        product.setQuantityInStock(dto.getQuantityInStock());
 
+        // 3. Optional Date for future Preorders
         product.setExpectedAvailabilityDate(dto.getExpectedAvailabilityDate());
 
         return product;

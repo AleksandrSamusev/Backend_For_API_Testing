@@ -71,6 +71,7 @@ public class JpaProductService implements ProductService {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
         productRepository.deleteById(id);
+        log.info("[ProductService] SKU Purge: Product with ID {} has been permanently removed.", id);
         return "Product with id: " + id + " permanently deleted";
     }
 
@@ -115,54 +116,27 @@ public class JpaProductService implements ProductService {
 
 
     private Map<String, Object> sanitizeAndTrimAttributes(Map<String, Object> original) {
-        if (original == null || original.isEmpty()) {
-            return new HashMap<>();
-        }
+        if (original == null || original.isEmpty()) return new HashMap<>();
 
         Map<String, Object> cleanMap = new HashMap<>();
 
-        // Regex: Keys (Alphanumeric/Underscore), Values (Safe characters)
-        String keyRegex = "^[a-zA-Z0-9_]+$";
-        String valueRegex = "^[\\p{L}\\p{N}\\s\\-_.]+$";
+        // Whitelist: Alphanumeric and common punctuation/symbols used in hardware specs
+        // This now explicitly includes: % . - ( ) / + " ' and spaces
+        String valueRegex = "^[a-zA-Z0-9\\s\\.\\-\\( \\)/\\+\\%\\\"\\']+$";
 
         original.forEach((key, value) -> {
-            // 1. Trim and Validate Key
             String trimmedKey = (key != null) ? key.trim() : "";
-
-            if (trimmedKey.isEmpty()) {
-                throw new IllegalArgumentException("Attribute key cannot be empty");
-            }
-            if (!trimmedKey.matches(keyRegex)) {
-                throw new IllegalArgumentException("Invalid characters in attribute key: " + trimmedKey);
-            }
-
-            // 2. Trim and Validate Value
-            Object processedValue = value;
 
             if (value instanceof String str) {
                 String trimmedValue = str.trim();
-                if (!trimmedValue.matches(valueRegex)) {
+                // If the spec is empty, we allow it, but if it has content, it must match our whitelist
+                if (!trimmedValue.isEmpty() && !trimmedValue.matches(valueRegex)) {
                     throw new IllegalArgumentException("Unsafe characters in value for key '" + trimmedKey + "': " + trimmedValue);
                 }
-                processedValue = trimmedValue;
-
-            } else if (value instanceof List<?> list) {
-                // Handle List of Strings (common for attributes like 'colors')
-                processedValue = list.stream()
-                        .map(item -> {
-                            if (item instanceof String s) {
-                                String ts = s.trim();
-                                if (!ts.matches(valueRegex))
-                                    throw new IllegalArgumentException("Unsafe string in list: " + ts);
-                                return ts;
-                            }
-                            return item;
-                        })
-                        .toList();
+                cleanMap.put(trimmedKey, trimmedValue);
+            } else {
+                cleanMap.put(trimmedKey, value);
             }
-
-            // 3. Put into the NEW map
-            cleanMap.put(trimmedKey, processedValue);
         });
 
         return cleanMap;

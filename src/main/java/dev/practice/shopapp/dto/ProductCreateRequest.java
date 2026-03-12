@@ -82,9 +82,6 @@ public class ProductCreateRequest {
     )
     private String imageUrl;
 
-    @NotNull(message = "{product.status.required}")
-    private AvailabilityStatus status;
-
     @NotBlank(message = "{product.createdBy.required}")
     @Size(min = 3, max = 50, message = "{product.createdBy.size}")
     private String createdBy;
