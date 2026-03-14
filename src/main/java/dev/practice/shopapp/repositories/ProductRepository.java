@@ -9,12 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     // Allows you to find a product by its unique SKU (useful for updates/checks)
-    Optional<Product> findBySku(String sku);
+
     @Query("SELECT p FROM Product p WHERE " +
             "LOWER(p.name) LIKE %:term% OR " +
             "LOWER(p.sku) LIKE %:term% OR " +
