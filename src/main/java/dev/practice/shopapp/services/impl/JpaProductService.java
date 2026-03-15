@@ -122,7 +122,7 @@ public class JpaProductService implements ProductService {
 
         // Whitelist: Alphanumeric and common punctuation/symbols used in hardware specs
         // This now explicitly includes: % . - ( ) / + " ' and spaces
-        String valueRegex = "^[a-zA-Z0-9\\s\\.\\-\\( \\)/\\+\\%\\\"\\']+$";
+        String valueRegex = "^[a-zA-Z0-9\\s.\\-()/+%\\u00B0\"']+$";
 
         original.forEach((key, value) -> {
             String trimmedKey = (key != null) ? key.trim() : "";
