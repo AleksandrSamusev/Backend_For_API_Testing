@@ -71,7 +71,7 @@ public class JpaProductService implements ProductService {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
         productRepository.deleteById(id);
-        log.info("[ProductService] SKU Purge: Product with ID {} has been permanently removed.", id);
+        log.info("[ProductService] SKU Delete: Product with ID {} has been permanently removed.", id);
         return "Product with id: " + id + " permanently deleted";
     }
 
