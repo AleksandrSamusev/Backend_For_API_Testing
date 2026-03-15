@@ -90,6 +90,7 @@ public class ProductMapper {
                 .category(product.getCategory())
                 .manufacturer(product.getManufacturer())
                 .price(product.getPrice())
+                .costPrice(product.getCostPrice())
                 .salePrice(product.getSalePrice())
                 .currencyCode(product.getCurrencyCode())
                 .sku(product.getSku())
