@@ -7,6 +7,7 @@ import dev.practice.shopapp.exceptions.ResourceNotFoundException;
 import dev.practice.shopapp.mappers.ProductMapper;
 import dev.practice.shopapp.models.Product;
 import dev.practice.shopapp.repositories.ProductRepository;
+import dev.practice.shopapp.repositories.specs.ProductSpecification;
 import dev.practice.shopapp.services.ProductService;
 import jakarta.persistence.OptimisticLockException;
 import jakarta.transaction.Transactional;
@@ -16,7 +17,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +43,7 @@ public class JpaProductService implements ProductService {
         return mapper.toProductResponse(savedProduct);
     }
 
-    @Override
+/*    @Override
     public Page<ProductResponse> getProducts(String search, int page, int size, String sort) {
         // 1. Create Pageable (Default to newest first)
         // PRO-TIP: You can expand this to parse 'id,asc' or 'price,desc' later
@@ -56,7 +60,7 @@ public class JpaProductService implements ProductService {
 
         // 3. Map to DTOs while preserving the Page metadata (totalPages, totalElements)
         return productPage.map(mapper::toProductResponse);
-    }
+    }*/
 
     @Override
     public ProductResponse getProductById(Long id) {
@@ -87,6 +91,22 @@ public class JpaProductService implements ProductService {
                 .ifPresent(p -> stats.put("topSeller", p.getName()));
 
         return stats;
+    }
+
+    @Override
+    public Page<ProductResponse> getFilteredProducts(String category, BigDecimal min, BigDecimal max, String search, int page, int size, String sort) {
+        String sortByField = "id";
+        Sort.Direction direction = Sort.Direction.DESC;
+        if (sort != null && !sort.isEmpty()) {
+            String[] sortParts = sort.split(",");
+            sortByField = sortParts[0];
+            if (sortParts.length > 1 && sortParts[1].equalsIgnoreCase("asc")) {
+                direction = Sort.Direction.ASC;
+            }
+        }
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortByField));
+        Specification<Product> spec = ProductSpecification.filterBy(category, min, max, search);
+        return productRepository.findAll(spec, pageable).map(mapper::toProductResponse);
     }
 
     @Override

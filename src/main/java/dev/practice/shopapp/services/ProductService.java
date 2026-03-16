@@ -5,6 +5,7 @@ import dev.practice.shopapp.dto.ProductResponse;
 import dev.practice.shopapp.dto.ProductUpdateRequest;
 import org.springframework.data.domain.Page;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 // 1. You can remove the 'Product' and 'List' imports if they aren't used elsewhere
@@ -13,7 +14,7 @@ public interface ProductService {
     // FIX: Return ProductResponse for perfect API consistency
     ProductResponse createProduct(ProductCreateRequest dto);
 
-    Page<ProductResponse> getProducts(String search, int page, int size, String sort);
+    //Page<ProductResponse> getProducts(String search, int page, int size, String sort);
 
     ProductResponse getProductById(Long id);
 
@@ -22,4 +23,6 @@ public interface ProductService {
     String deleteProductById(Long id);
 
     Map<String, Object> getInventoryStats();
+
+    Page<ProductResponse> getFilteredProducts(String category, BigDecimal minPrice, BigDecimal maxPrice, String search, int page, int size, String sort);
 }

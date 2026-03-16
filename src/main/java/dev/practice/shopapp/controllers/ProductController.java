@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -40,18 +41,20 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<ApiResponse<Page<ProductResponse>>> getProducts(
             HttpServletRequest request,
-            // 1. Search across Name, SKU, Category
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice,
             @RequestParam(required = false) String search,
-            // 2. Pagination controls
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            // 3. Sorting (Matching your Veloce UI sorting toggle)
             @RequestParam(defaultValue = "id,desc") String sort) {
 
-        // Return the Page object containing metadata like totalElements and totalPages
+        Page<ProductResponse> products = productService.getFilteredProducts(
+                category, minPrice, maxPrice, search, page, size, sort
+        );
         return new ResponseEntity<>(
                 ResponseUtil.success(
-                        productService.getProducts(search, page, size, sort),
+                        products,
                         "Products retrieved successfully",
                         request.getRequestURI()
                 ),

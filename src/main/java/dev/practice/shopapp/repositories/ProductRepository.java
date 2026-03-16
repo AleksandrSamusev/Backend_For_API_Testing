@@ -5,20 +5,21 @@ import dev.practice.shopapp.models.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
     // Allows you to find a product by its unique SKU (useful for updates/checks)
-
-    @Query("SELECT p FROM Product p WHERE " +
-            "LOWER(p.name) LIKE %:term% OR " +
-            "LOWER(p.sku) LIKE %:term% OR " +
-            "LOWER(p.category) LIKE %:term%")
-    Page<Product> findBySearchTerm(String term, Pageable pageable);
+    //
+    //    @Query("SELECT p FROM Product p WHERE " +
+    //            "LOWER(p.name) LIKE %:term% OR " +
+    //            "LOWER(p.sku) LIKE %:term% OR " +
+    //            "LOWER(p.category) LIKE %:term%")
+    //    Page<Product> findBySearchTerm(String term, Pageable pageable);
 
     // ProductRepository.java
     @Query("SELECT COUNT(p) FROM Product p WHERE p.quantityInStock <= p.lowStockThreshold")
