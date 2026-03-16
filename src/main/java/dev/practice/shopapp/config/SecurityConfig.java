@@ -1,5 +1,6 @@
 package dev.practice.shopapp.config;
 
+import dev.practice.shopapp.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +26,12 @@ public class SecurityConfig {
 
     // 🚀 THE FIX: Inject the service interface (Lombok handles the constructor)
     private final UserDetailsService userDetailsService;
+    private final JwtAuthenticationFilter jwtAuthFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                // 1. CONFIGURE CORS: Whitelist your React frontend (port 5173)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOrigins(List.of("http://localhost:5173"));
@@ -36,16 +39,27 @@ public class SecurityConfig {
                     config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
                     return config;
                 }))
+                // 2. DISABLE CSRF: Standard practice for stateless JWT-based APIs
                 .csrf(csrf -> csrf.disable())
+                // 3. SET STATELESS SESSION: No server-side sessions; rely purely on JWT
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // 4. DEFINE AUTHORIZATION RULES: Top-to-bottom precedence
                 .authorizeHttpRequests(auth -> auth
+                        // Publicly accessible endpoints
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/products/**").permitAll()
+                        // Restricted Admin-only sectors
+                        .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/products/**").hasRole("ADMIN")
+                        // All other requests require a valid identity badge
                         .anyRequest().authenticated()
                 );
 
-        // 🚀 THE SYMMETRY: Attach your custom provider to the filter chain
+        // 🚀 THE FINAL HANDSHAKE:
+        // Intercept every request with the JWT filter before standard authentication
+        http.addFilterBefore(jwtAuthFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
+
+        // Attach the custom provider for database-backed authentication
         http.authenticationProvider(authenticationProvider());
 
         return http.build();
