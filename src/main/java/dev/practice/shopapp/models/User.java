@@ -10,9 +10,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -21,7 +24,7 @@ import java.util.List;
 @Schema(description = "User entity representing a registered user in the system")
 @Table(name = "users")
 @Entity
-public class User {
+public class User implements UserDetails {
     @Id
     @Schema(description = "Unique identifier of the user", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +49,21 @@ public class User {
     @Email(message = "{user.email.invalid}")
     @Column(nullable = false, unique = true, columnDefinition = "text")
     private String email;
+
+    @Schema(description = "Hashed access cipher for terminal login", accessMode = Schema.AccessMode.WRITE_ONLY)
+    @NotBlank(message = "{user.password.required}")
+    @Size(min = 8, message = "{user.password.size}")
+    @Column(nullable = false)
+    private String password;
+
+    @Schema(description = "Assigned clearance levels (e.g., ROLE_ADMIN, ROLE_USER)")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @Schema(description = "Contact phone number in international format", example = "+1234567890", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "{user.phoneNumber.required}")
@@ -75,4 +93,22 @@ public class User {
         addresses.remove(address);
         address.setUser(null); // Breaks the link for orphanRemoval to work
     }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name())) // 🚀 Get Enum String
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() { return email; } // 🚀 Email is our primary identity
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+    @Override
+    public boolean isEnabled() { return true; }
 }

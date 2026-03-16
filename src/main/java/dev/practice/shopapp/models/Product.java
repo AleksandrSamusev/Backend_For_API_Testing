@@ -140,7 +140,6 @@ public class Product {
 
     public void setQuantityInStock(Integer newQuantity) {
         this.quantityInStock = newQuantity;
-        // Your "Human Factor Insurance" logic here:
         if (newQuantity != null && newQuantity > 0) {
             this.status = AvailabilityStatus.IN_STOCK;
             this.expectedAvailabilityDate = null;
@@ -156,7 +155,6 @@ public class Product {
         this.quantityInStock = newQuantity;
 
         if (newQuantity > 0) {
-            // If it was BACKORDER or OUT_OF_STOCK, it's now IN_STOCK
             this.status = AvailabilityStatus.IN_STOCK;
             this.expectedAvailabilityDate = null; // Clear the date, it's here now!
         } else {

@@ -1,32 +1,46 @@
 package dev.practice.shopapp;
 
 import dev.practice.shopapp.enums.AddressType;
+import dev.practice.shopapp.enums.UserRole;
 import dev.practice.shopapp.models.Address;
 import dev.practice.shopapp.models.Product;
+import dev.practice.shopapp.models.Role;
 import dev.practice.shopapp.models.User;
 import dev.practice.shopapp.repositories.ProductRepository;
+import dev.practice.shopapp.repositories.RoleRepository;
 import dev.practice.shopapp.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Set;
 
 @Configuration
 public class DataSeeder {
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository, ProductRepository productRepository) {
+    CommandLineRunner initDatabase(UserRepository userRepository, ProductRepository productRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 
+            // 🚀 THE UPGRADED SEEDER: Now with Security Handshake
             if (userRepository.count() == 0) {
-                // 1. Create Alex Developer
+                // Fetch the forged roles from the database (V4 migration created these)
+                Role adminRole = roleRepository.findByName(UserRole.ROLE_ADMIN).orElse(null);
+                Role userRole = roleRepository.findByName(UserRole.ROLE_USER).orElse(null);
+
+                // 1. Create Alex (The Admin Commander)
                 User alex = new User();
                 alex.setFirstName("Alex");
                 alex.setLastName("Developer");
                 alex.setEmail("alex.test@docker.local");
                 alex.setPhoneNumber("+12345678901");
+
+                // 🛡️ SECURITY: Hash the password before saving
+                alex.setPassword(passwordEncoder.encode("SecureMaster2026!"));
+                alex.setRoles(Set.of(adminRole)); // Grant Admin Forge access
 
                 Address home = new Address();
                 home.setStreetAddress("123 Java Lane");
@@ -34,16 +48,19 @@ public class DataSeeder {
                 home.setCountryCode("US");
                 home.setPostalCode("62704");
                 home.setAddressType(AddressType.PRIMARY);
-
                 alex.addAddress(home);
                 userRepository.save(alex);
 
-                // 2. Create Sarah Tester
+                // 2. Create Sarah (The Standard User)
                 User sarah = new User();
                 sarah.setFirstName("Sarah");
                 sarah.setLastName("Tester");
                 sarah.setEmail("sarah.tester@docker.local");
                 sarah.setPhoneNumber("+19876543210");
+
+                // 🛡️ SECURITY: Unique password for the showroom
+                sarah.setPassword(passwordEncoder.encode("TesterAccess2026!"));
+                sarah.setRoles(Set.of(userRole)); // Grant only Showroom access
 
                 Address work = new Address();
                 work.setStreetAddress("789 Pine Lane");
@@ -51,11 +68,10 @@ public class DataSeeder {
                 work.setCountryCode("US");
                 work.setPostalCode("98101");
                 work.setAddressType(AddressType.PRIMARY);
-
                 sarah.addAddress(work);
                 userRepository.save(sarah);
 
-                System.out.println("✅ Local Docker database successfully seeded with test users!");
+                System.out.println("✅ Security Terminal: Initial Commanders successfully forged!");
             }
 
             // --- 2. SEED SPACESHIP PARTS ---
