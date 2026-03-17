@@ -25,10 +25,15 @@ public class AuthController {
             @Valid @RequestBody LoginRequest loginRequest,
             HttpServletRequest request) {
 
+        // The service layer now returns a JwtResponse containing the token, user id, email, and roles
         JwtResponse jwtResponse = authService.login(loginRequest);
 
         return ResponseEntity.ok(
-                ResponseUtil.success(jwtResponse, "Clearance Granted. Welcome Commander.", request.getRequestURI())
+                ResponseUtil.success(
+                        jwtResponse,
+                        "Login successful",
+                        request.getRequestURI()
+                )
         );
     }
 

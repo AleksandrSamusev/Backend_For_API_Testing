@@ -33,24 +33,31 @@ public class AuthService {
 
     // 🚀 INITIATE ACCESS: The Login Handshake
     public JwtResponse login(LoginRequest loginRequest) {
-        // 1. Verify credentials with the AuthenticationManager (The Handshake)
+        // 1. Authenticate credentials using the AuthenticationManager
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
-        // 2. Set security context and generate the digital "Clearance Badge" (The Token)
+        // 2. Establish the Security Context and generate the JWT token
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        // 3. Extract the UserDetails from the principal
+        // 3. Extract User details from the principal
+        // Ensure your User model implements UserDetails and provides a getId() method
         User userDetails = (User) authentication.getPrincipal();
 
-        // 🚀 THE FIX: Convert authorities to a List of Strings (e.g., ["ROLE_ADMIN"])
+        // 4. Map authorities to a List of role strings
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        // 4. Return the finalized badge for the Security Terminal
-        return new JwtResponse(jwt, userDetails.getEmail(), roles);
+        // 🚀 THE FIX: Include the database ID in the JwtResponse
+        // This allows the frontend to perform targeted requests for user addresses.
+        return new JwtResponse(
+                jwt,
+                userDetails.getId(),
+                userDetails.getEmail(),
+                roles
+        );
     }
 
     // 🚀 FORGE CREDENTIALS: The Registration Process
