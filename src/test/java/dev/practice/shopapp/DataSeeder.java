@@ -80,8 +80,8 @@ public class DataSeeder {
                 Product ionThruster = Product.builder()
                         .sku("SP-PR-001").name("Ion Thruster").category("Propulsion Systems")
                         .manufacturer("Aether Dynamics")
-                        .price(new BigDecimal("845000.00"))
-                        .costPrice(new BigDecimal("520000.00"))
+                        .price(new BigDecimal("8450.00"))
+                        .costPrice(new BigDecimal("5200.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(2)
                         .imageUrl(IMG_ION_THRUSTER)
@@ -100,8 +100,8 @@ public class DataSeeder {
                 Product fusionCore = Product.builder()
                         .sku("SP-PO-002").name("Fusion Reactor Core").category("Power Systems")
                         .manufacturer("Helios Energy Systems")
-                        .price(new BigDecimal("999500.00"))
-                        .costPrice(new BigDecimal("620000.00"))
+                        .price(new BigDecimal("9995.00"))
+                        .costPrice(new BigDecimal("6200.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(1)
                         .imageUrl(IMG_FUSION_REACTOR_CORE)
@@ -121,8 +121,8 @@ public class DataSeeder {
                 Product lifeSupport = Product.builder()
                         .sku("SP-LS-003").name("Life Support Canister").category("Life Support Systems")
                         .manufacturer("Orion Habitat Systems")
-                        .price(new BigDecimal("185000.00"))
-                        .costPrice(new BigDecimal("92000.00"))
+                        .price(new BigDecimal("1850.00"))
+                        .costPrice(new BigDecimal("920.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(4)
                         .imageUrl(IMG_LIFE_SUPPORT_CANISTER)
@@ -141,8 +141,8 @@ public class DataSeeder {
                 Product navSensor = Product.builder()
                         .sku("SP-NS-004").name("Navigation Sensor").category("Navigation Systems")
                         .manufacturer("Orion DeepSpace Systems")
-                        .price(new BigDecimal("210000.00"))
-                        .costPrice(new BigDecimal("120000.00"))
+                        .price(new BigDecimal("2100.00"))
+                        .costPrice(new BigDecimal("1200.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(3)
                         .imageUrl(IMG_NAVIGATION_SENSOR)
@@ -160,8 +160,8 @@ public class DataSeeder {
                 Product fuelCell = Product.builder()
                         .sku("SP-PO-005").name("Reactive Fuel Cell").category("Power Systems")
                         .manufacturer("Helios Energy Systems")
-                        .price(new BigDecimal("330000.00"))
-                        .costPrice(new BigDecimal("175000.00"))
+                        .price(new BigDecimal("3300.00"))
+                        .costPrice(new BigDecimal("1750.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(3)
                         .imageUrl(IMG_REACTIVE_FUEL_CELL)
@@ -180,8 +180,8 @@ public class DataSeeder {
                 Product gyroStabilizer = Product.builder()
                         .sku("SP-GR-006").name("Gyro Stabilizer").category("Stability Systems")
                         .manufacturer("Atlas Interstellar")
-                        .price(new BigDecimal("420000.00"))
-                        .costPrice(new BigDecimal("220000.00"))
+                        .price(new BigDecimal("4200.00"))
+                        .costPrice(new BigDecimal("2200.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(3)
                         .imageUrl(IMG_GYRO_STABILIZER)
@@ -199,8 +199,8 @@ public class DataSeeder {
                 Product fusionCoreV2 = Product.builder()
                         .sku("SP-PO-007").name("Fusion Reactor Core Mk II").category("Power Systems")
                         .manufacturer("Helios Energy Systems")
-                        .price(new BigDecimal("998000.00"))
-                        .costPrice(new BigDecimal("680000.00"))
+                        .price(new BigDecimal("9980.00"))
+                        .costPrice(new BigDecimal("6800.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(1)
                         .imageUrl(IMG_FUSION_REACTOR_CORE_V2)
@@ -219,8 +219,8 @@ public class DataSeeder {
                 Product warpDrive = Product.builder()
                         .sku("SP-FTL-008").name("Warp Drive Module").category("FTL Systems")
                         .manufacturer("Atlas Interstellar")
-                        .price(new BigDecimal("995000.00"))
-                        .costPrice(new BigDecimal("720000.00"))
+                        .price(new BigDecimal("9950.00"))
+                        .costPrice(new BigDecimal("7200.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(1)
                         .imageUrl(IMG_WARP_DRIVE_MODULE)
@@ -239,8 +239,8 @@ public class DataSeeder {
                 Product ionThrusterV2 = Product.builder()
                         .sku("SP-PR-009").name("Ion Thruster Mk II").category("Propulsion Systems")
                         .manufacturer("Aether Dynamics")
-                        .price(new BigDecimal("910000.00"))
-                        .costPrice(new BigDecimal("610000.00"))
+                        .price(new BigDecimal("9100.00"))
+                        .costPrice(new BigDecimal("6100.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(2)
                         .imageUrl(IMG_ION_THRUSTER_V2)
@@ -259,8 +259,8 @@ public class DataSeeder {
                 Product capacitor = Product.builder()
                         .sku("SP-PO-010").name("Power Capacitor").category("Power Systems")
                         .manufacturer("Helios Energy Systems")
-                        .price(new BigDecimal("160000.00"))
-                        .costPrice(new BigDecimal("80000.00"))
+                        .price(new BigDecimal("1600.00"))
+                        .costPrice(new BigDecimal("800.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(5)
                         .imageUrl(IMG_POWER_CAPACITOR)
@@ -278,8 +278,8 @@ public class DataSeeder {
                 Product navSensor2 = Product.builder()
                         .sku("SP-NS-011").name("Navigation Sensor Mk II").category("Navigation Systems")
                         .manufacturer("Orion DeepSpace Systems")
-                        .price(new BigDecimal("240000.00"))
-                        .costPrice(new BigDecimal("130000.00"))
+                        .price(new BigDecimal("2400.00"))
+                        .costPrice(new BigDecimal("1300.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(3)
                         .imageUrl(IMG_NAVIGATION_SENSOR_V2)
@@ -298,8 +298,8 @@ public class DataSeeder {
                 Product radiator = Product.builder()
                         .sku("SP-TH-012").name("Cooling Radiator").category("Thermal Systems")
                         .manufacturer("CryoTech Industries")
-                        .price(new BigDecimal("143000.00"))
-                        .costPrice(new BigDecimal("78000.00"))
+                        .price(new BigDecimal("1430.00"))
+                        .costPrice(new BigDecimal("780.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(4)
                         .imageUrl(IMG_COOLING_RADIATOR)
@@ -317,8 +317,8 @@ public class DataSeeder {
                 Product gyroUnit = Product.builder()
                         .sku("SP-GR-013").name("Gyroscope Unit").category("Stability Systems")
                         .manufacturer("Atlas Interstellar")
-                        .price(new BigDecimal("275000.00"))
-                        .costPrice(new BigDecimal("140000.00"))
+                        .price(new BigDecimal("2750.00"))
+                        .costPrice(new BigDecimal("1400.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(3)
                         .imageUrl(IMG_GYROSCOPE_UNIT)
@@ -336,8 +336,8 @@ public class DataSeeder {
                 Product repairKit = Product.builder()
                         .sku("SP-ST-014").name("Hull Repair Kit").category("Maintenance Equipment")
                         .manufacturer("Frontier Shipyards")
-                        .price(new BigDecimal("42000.00"))
-                        .costPrice(new BigDecimal("21000.00"))
+                        .price(new BigDecimal("420.00"))
+                        .costPrice(new BigDecimal("210.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(8)
                         .imageUrl(IMG_HULL_REPAIR_KIT)
@@ -355,7 +355,7 @@ public class DataSeeder {
 
                 Product plasmaConverter = Product.builder()
                         .sku("SP-PC-201").name("Plasma Converter").category("Energy Systems")
-                        .manufacturer("Helios Industrial").price(new BigDecimal("284500.00")).costPrice(new BigDecimal("198000.00"))
+                        .manufacturer("Helios Industrial").price(new BigDecimal("2845.00")).costPrice(new BigDecimal("1980.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_PLASMA_CONVERTER).createdBy("system")
                         .attributes(Map.of(
                                 "Power Throughput", "320 MW",
@@ -372,7 +372,7 @@ public class DataSeeder {
 
                 Product quantumCapacitor = Product.builder()
                         .sku("SP-QC-402").name("Quantum Capacitor").category("Energy Storage")
-                        .manufacturer("Orion Drive Systems").price(new BigDecimal("156000.00")).costPrice(new BigDecimal("104000.00"))
+                        .manufacturer("Orion Drive Systems").price(new BigDecimal("1560.00")).costPrice(new BigDecimal("1040.00"))
                         .currencyCode("USD").lowStockThreshold(8).imageUrl(IMG_QUANTUM_CAPACITOR).createdBy("system")
                         .attributes(Map.of(
                                 "Energy Capacity", "8 GJ",
@@ -389,7 +389,7 @@ public class DataSeeder {
 
                 Product cryogenicReactor = Product.builder()
                         .sku("SP-CR-118").name("Cryogenic Reactor").category("Power Systems")
-                        .manufacturer("Aether Dynamics").price(new BigDecimal("498500.00")).costPrice(new BigDecimal("352000.00"))
+                        .manufacturer("Aether Dynamics").price(new BigDecimal("4985.00")).costPrice(new BigDecimal("3520.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_CRYOGENIC_REACTOR).createdBy("system")
                         .attributes(Map.of(
                                 "Reactor Output", "540 MW",
@@ -406,7 +406,7 @@ public class DataSeeder {
 
                 Product protonInjectorAssembly = Product.builder()
                         .sku("SP-PI-673").name("Proton Injector Assembly").category("Propulsion Components")
-                        .manufacturer("Nova Propulsion Labs").price(new BigDecimal("362000.00")).costPrice(new BigDecimal("248000.00"))
+                        .manufacturer("Nova Propulsion Labs").price(new BigDecimal("3620.00")).costPrice(new BigDecimal("2480.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_PROTON_INJECTOR_ASSEMBLY).createdBy("system")
                         .attributes(Map.of(
                                 "Injection Velocity", "0.82c",
@@ -423,7 +423,7 @@ public class DataSeeder {
 
                 Product fluxEnergyModule = Product.builder()
                         .sku("SP-FE-320").name("Flux Energy Module").category("Energy Systems")
-                        .manufacturer("Helios Industrial").price(new BigDecimal("184000.00")).costPrice(new BigDecimal("126000.00"))
+                        .manufacturer("Helios Industrial").price(new BigDecimal("1840.00")).costPrice(new BigDecimal("1260.00"))
                         .currencyCode("USD").lowStockThreshold(9).imageUrl(IMG_FLUX_ENERGY_MODULE).createdBy("system")
                         .attributes(Map.of(
                                 "Energy Flux Range", "40 to 280 MW",
@@ -440,7 +440,7 @@ public class DataSeeder {
 
                 Product hypercoilStabilizer = Product.builder()
                         .sku("SP-HS-944").name("Hypercoil Stabilizer").category("Navigation Systems")
-                        .manufacturer("Orion Drive Systems").price(new BigDecimal("212500.00")).costPrice(new BigDecimal("152000.00"))
+                        .manufacturer("Orion Drive Systems").price(new BigDecimal("2125.00")).costPrice(new BigDecimal("1520.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_HYPERCOIL_STABILIZER).createdBy("system")
                         .attributes(Map.of(
                                 "Stabilization Precision", "0.0003 Degrees",
@@ -457,7 +457,7 @@ public class DataSeeder {
 
                 Product emergencyHullRepairKit = Product.builder()
                         .sku("SP-HR-551").name("Emergency Hull Repair Kit").category("Repair Kits")
-                        .manufacturer("Titan Field Systems").price(new BigDecimal("42000.00")).costPrice(new BigDecimal("28000.00"))
+                        .manufacturer("Titan Field Systems").price(new BigDecimal("420.00")).costPrice(new BigDecimal("280.00"))
                         .currencyCode("USD").lowStockThreshold(12).imageUrl(IMG_EMERGENCY_HULL_REPAIR_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Patch Material", "Nano Composite",
@@ -474,7 +474,7 @@ public class DataSeeder {
 
                 Product powerRelayKit = Product.builder()
                         .sku("SP-PR-280").name("Power Relay Kit").category("Electrical Components")
-                        .manufacturer("Helios Industrial").price(new BigDecimal("78000.00")).costPrice(new BigDecimal("54000.00"))
+                        .manufacturer("Helios Industrial").price(new BigDecimal("780.00")).costPrice(new BigDecimal("540.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_POWER_RELAY_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Voltage Capacity", "60 kV",
@@ -491,7 +491,7 @@ public class DataSeeder {
 
                 Product dataCoreBackupSet = Product.builder()
                         .sku("SP-DB-672").name("Data Core Backup Set").category("Data Systems")
-                        .manufacturer("Orion Datatech").price(new BigDecimal("132000.00")).costPrice(new BigDecimal("94000.00"))
+                        .manufacturer("Orion Datatech").price(new BigDecimal("1320.00")).costPrice(new BigDecimal("940.00"))
                         .currencyCode("USD").lowStockThreshold(8).imageUrl(IMG_DATA_CORE_BACKUP_SET).createdBy("system")
                         .attributes(Map.of(
                                 "Storage Capacity", "48 TB",
@@ -508,7 +508,7 @@ public class DataSeeder {
 
                 Product diagnosticScannerKit = Product.builder()
                         .sku("SP-DS-225").name("Diagnostic Scanner Kit").category("Diagnostics Equipment")
-                        .manufacturer("Titan Field Systems").price(new BigDecimal("68500.00")).costPrice(new BigDecimal("44000.00"))
+                        .manufacturer("Titan Field Systems").price(new BigDecimal("685.00")).costPrice(new BigDecimal("440.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_DIAGNOSTIC_SCANNER_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Scan Resolution", "0.02 mm",
@@ -525,7 +525,7 @@ public class DataSeeder {
 
                 Product thermalPatchRepairSet = Product.builder()
                         .sku("SP-TP-540").name("Thermal Patch Repair Set").category("Repair Kits")
-                        .manufacturer("Titan Field Systems").price(new BigDecimal("29500.00")).costPrice(new BigDecimal("19000.00"))
+                        .manufacturer("Titan Field Systems").price(new BigDecimal("295.00")).costPrice(new BigDecimal("190.00"))
                         .currencyCode("USD").lowStockThreshold(12).imageUrl(IMG_THERMAL_PATCH_REPAIR_SET).createdBy("system")
                         .attributes(Map.of(
                                 "Patch Material", "Ceramic Composite",
@@ -542,7 +542,7 @@ public class DataSeeder {
 
                 Product fieldMaintenanceToolkit = Product.builder()
                         .sku("SP-FM-488").name("Field Maintenance Toolkit").category("Maintenance Kits")
-                        .manufacturer("Nova Utility Systems").price(new BigDecimal("84500.00")).costPrice(new BigDecimal("61000.00"))
+                        .manufacturer("Nova Utility Systems").price(new BigDecimal("845.00")).costPrice(new BigDecimal("610.00"))
                         .currencyCode("USD").lowStockThreshold(9).imageUrl(IMG_FIELD_MAINTENANCE_TOOLKIT).createdBy("system")
                         .attributes(Map.of(
                                 "Tool Count", "42",
@@ -559,7 +559,7 @@ public class DataSeeder {
 
                 Product emergencyDockingKit = Product.builder()
                         .sku("SP-ED-390").name("Emergency Docking Kit").category("Docking Equipment")
-                        .manufacturer("Aether Dynamics").price(new BigDecimal("176000.00")).costPrice(new BigDecimal("122000.00"))
+                        .manufacturer("Aether Dynamics").price(new BigDecimal("1760.00")).costPrice(new BigDecimal("1220.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EMERGENCY_DOCKING_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Docking Clamp Force", "240 kN",
@@ -576,7 +576,7 @@ public class DataSeeder {
 
                 Product shieldGeneratorArray = Product.builder()
                         .sku("SP-SG-911").name("Shield Generator Array").category("Defensive Systems")
-                        .manufacturer("Helios Defense Tech").price(new BigDecimal("498000.00")).costPrice(new BigDecimal("356000.00"))
+                        .manufacturer("Helios Defense Tech").price(new BigDecimal("4980.00")).costPrice(new BigDecimal("3560.00"))
                         .currencyCode("USD").lowStockThreshold(4).imageUrl(IMG_SHIELD_GENERATOR_ARRAY).createdBy("system")
                         .attributes(Map.of(
                                 "Shield Strength", "4200 TJ",
@@ -593,7 +593,7 @@ public class DataSeeder {
 
                 Product engineMaintenanceKit = Product.builder()
                         .sku("SP-EM-312").name("Engine Maintenance Kit").category("Maintenance Kits")
-                        .manufacturer("Nova Utility Systems").price(new BigDecimal("96500.00")).costPrice(new BigDecimal("69000.00"))
+                        .manufacturer("Nova Utility Systems").price(new BigDecimal("965.00")).costPrice(new BigDecimal("690.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_ENGINE_MAINTENANCE_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Supported Engines", "Ion Fusion Plasma",
@@ -610,7 +610,7 @@ public class DataSeeder {
 
                 Product thermalInsulationSet = Product.builder()
                         .sku("SP-TI-721").name("Thermal Insulation Set").category("Thermal Systems")
-                        .manufacturer("Orion Thermal Labs").price(new BigDecimal("54000.00")).costPrice(new BigDecimal("38000.00"))
+                        .manufacturer("Orion Thermal Labs").price(new BigDecimal("540.00")).costPrice(new BigDecimal("380.00"))
                         .currencyCode("USD").lowStockThreshold(12).imageUrl(IMG_THERMAL_INSULATION_SET).createdBy("system")
                         .attributes(Map.of(
                                 "Heat Resistance", "1600°C",
@@ -627,7 +627,7 @@ public class DataSeeder {
 
                 Product dataCoreBackup = Product.builder()
                         .sku("SP-DC-118").name("Data Core Backup").category("Data Systems")
-                        .manufacturer("Orion Datatech").price(new BigDecimal("98000.00")).costPrice(new BigDecimal("72000.00"))
+                        .manufacturer("Orion Datatech").price(new BigDecimal("980.00")).costPrice(new BigDecimal("720.00"))
                         .currencyCode("USD").lowStockThreshold(9).imageUrl(IMG_DATA_CORE_BACKUP).createdBy("system")
                         .attributes(Map.of(
                                 "Storage Capacity", "24 TB",
@@ -644,7 +644,7 @@ public class DataSeeder {
 
                 Product hullSealantKit = Product.builder()
                         .sku("SP-HS-510").name("Hull Sealant Kit").category("Repair Kits")
-                        .manufacturer("Titan Field Systems").price(new BigDecimal("36500.00")).costPrice(new BigDecimal("24500.00"))
+                        .manufacturer("Titan Field Systems").price(new BigDecimal("365.00")).costPrice(new BigDecimal("245.00"))
                         .currencyCode("USD").lowStockThreshold(12).imageUrl(IMG_HULL_SEALANT_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Sealant Type", "Polymer Nano Foam",
@@ -661,7 +661,7 @@ public class DataSeeder {
 
                 Product shieldGeneratorKit = Product.builder()
                         .sku("SP-SK-644").name("Shield Generator Kit").category("Defensive Systems")
-                        .manufacturer("Helios Defense Tech").price(new BigDecimal("214500.00")).costPrice(new BigDecimal("152000.00"))
+                        .manufacturer("Helios Defense Tech").price(new BigDecimal("2145.00")).costPrice(new BigDecimal("1520.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_SHIELD_GENERATOR_KIT).createdBy("system")
                         .attributes(Map.of(
                                 "Shield Type", "Magnetic Plasma Field",
@@ -678,7 +678,7 @@ public class DataSeeder {
 
                 Product jumpDriveCoil = Product.builder()
                         .sku("SP-JD-801").name("Jump Drive Coil").category("Propulsion Systems")
-                        .manufacturer("Nova Propulsion Labs").price(new BigDecimal("412000.00")).costPrice(new BigDecimal("295000.00"))
+                        .manufacturer("Nova Propulsion Labs").price(new BigDecimal("4120.00")).costPrice(new BigDecimal("2950.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_JUMP_DRIVE_COIL).createdBy("system")
                         .attributes(Map.of(
                                 "Jump Range Boost", "12 Percent",
@@ -695,7 +695,7 @@ public class DataSeeder {
 
                 Product antimatterFuelPack = Product.builder()
                         .sku("SP-AF-677").name("Antimatter Fuel Pack").category("Fuel Systems")
-                        .manufacturer("Helios Energy Corp").price(new BigDecimal("365000.00")).costPrice(new BigDecimal("248000.00"))
+                        .manufacturer("Helios Energy Corp").price(new BigDecimal("3650.00")).costPrice(new BigDecimal("2480.00"))
                         .currencyCode("USD").lowStockThreshold(4).imageUrl(IMG_ANTIMATTER_FUEL_PACK).createdBy("system")
                         .attributes(Map.of(
                                 "Fuel Type", "Contained Antimatter",
@@ -712,7 +712,7 @@ public class DataSeeder {
 
                 Product longRangeRadarArray = Product.builder()
                         .sku("SP-RR-118").name("Long Range Radar Array").category("Navigation Systems")
-                        .manufacturer("Orion Navigation Tech").price(new BigDecimal("274000.00")).costPrice(new BigDecimal("190000.00"))
+                        .manufacturer("Orion Navigation Tech").price(new BigDecimal("2740.00")).costPrice(new BigDecimal("1900.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_LONG_RANGE_RADAR_ARRAY).createdBy("system")
                         .attributes(Map.of(
                                 "Detection Range", "220 Light Years",
@@ -729,7 +729,7 @@ public class DataSeeder {
 
                 Product aiControlModule = Product.builder()
                         .sku("SP-AI-555").name("AI Control Module").category("Control Systems")
-                        .manufacturer("Orion Datatech").price(new BigDecimal("318000.00")).costPrice(new BigDecimal("222000.00"))
+                        .manufacturer("Orion Datatech").price(new BigDecimal("3180.00")).costPrice(new BigDecimal("2220.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_AI_CONTROL_MODULE).createdBy("system")
                         .attributes(Map.of(
                                 "Processing Power", "480 TFLOPS",
@@ -746,7 +746,7 @@ public class DataSeeder {
 
                 Product quantumBatteryBank = Product.builder()
                         .sku("SP-QB-909").name("Quantum Battery Bank").category("Energy Storage")
-                        .manufacturer("Helios Energy Corp").price(new BigDecimal("226000.00")).costPrice(new BigDecimal("158000.00"))
+                        .manufacturer("Helios Energy Corp").price(new BigDecimal("2260.00")).costPrice(new BigDecimal("1580.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_QUANTUM_BATTERY_BANK).createdBy("system")
                         .attributes(Map.of(
                                 "Energy Capacity", "16 GJ",
@@ -767,7 +767,7 @@ public class DataSeeder {
                 Product nostalgia1 = Product.builder()
                         .sku("NS-ES-101").name("Earth Nostalgia Set N1").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("4200.00")).costPrice(new BigDecimal("3900.00"))
+                        .price(new BigDecimal("420.00")).costPrice(new BigDecimal("390.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_1).createdBy("system")
                         .attributes(Map.of(
                                 "Books","12 pcs",
@@ -785,7 +785,7 @@ public class DataSeeder {
                 Product nostalgia2 = Product.builder()
                         .sku("NS-ES-102").name("Earth Nostalgia Set N2").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("3800.00")).costPrice(new BigDecimal("3500.00"))
+                        .price(new BigDecimal("380.00")).costPrice(new BigDecimal("350.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_EARTH_SET_2).createdBy("system")
                         .attributes(Map.of(
                                 "Vinyl Records","5 pcs",
@@ -802,7 +802,7 @@ public class DataSeeder {
                 Product nostalgia3 = Product.builder()
                         .sku("NS-ES-103").name("Earth Nostalgia Set N3").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("4600.00")).costPrice(new BigDecimal("4200.00"))
+                        .price(new BigDecimal("460.00")).costPrice(new BigDecimal("420.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_3).createdBy("system")
                         .attributes(Map.of(
                                 "Plush Toys","9 pcs",
@@ -819,7 +819,7 @@ public class DataSeeder {
                 Product nostalgia4 = Product.builder()
                         .sku("NS-ES-104").name("Earth Nostalgia Set N4").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("5100.00")).costPrice(new BigDecimal("4700.00"))
+                        .price(new BigDecimal("510.00")).costPrice(new BigDecimal("470.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_4).createdBy("system")
                         .attributes(Map.of(
                                 "Boom Box","1 pcs",
@@ -836,7 +836,7 @@ public class DataSeeder {
                 Product nostalgia5 = Product.builder()
                         .sku("NS-ES-105").name("Earth Nostalgia Set N5").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("3500.00")).costPrice(new BigDecimal("3100.00"))
+                        .price(new BigDecimal("350.00")).costPrice(new BigDecimal("310.00"))
                         .currencyCode("USD").lowStockThreshold(8).imageUrl(IMG_EARTH_SET_5).createdBy("system")
                         .attributes(Map.of(
                                 "Retro Toys","10 pcs",
@@ -853,7 +853,7 @@ public class DataSeeder {
                 Product nostalgia6 = Product.builder()
                         .sku("NS-ES-106").name("Earth Nostalgia Set N6").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("4700.00")).costPrice(new BigDecimal("4300.00"))
+                        .price(new BigDecimal("470.00")).costPrice(new BigDecimal("430.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_6).createdBy("system")
                         .attributes(Map.of(
                                 "Comic Books","11 pcs",
@@ -870,7 +870,7 @@ public class DataSeeder {
                 Product nostalgia7 = Product.builder()
                         .sku("NS-ES-107").name("Earth Nostalgia Set N7").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("4900.00")).costPrice(new BigDecimal("4500.00"))
+                        .price(new BigDecimal("490.00")).costPrice(new BigDecimal("450.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_EARTH_SET_7).createdBy("system")
                         .attributes(Map.of(
                                 "Food Cans","9 pcs",
@@ -887,7 +887,7 @@ public class DataSeeder {
                 Product nostalgia8 = Product.builder()
                         .sku("NS-ES-108").name("Earth Nostalgia Set N8").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("5200.00")).costPrice(new BigDecimal("4800.00"))
+                        .price(new BigDecimal("520.00")).costPrice(new BigDecimal("480.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_8).createdBy("system")
                         .attributes(Map.of(
                                 "World Globe","1 pcs",
@@ -904,7 +904,7 @@ public class DataSeeder {
                 Product nostalgia9 = Product.builder()
                         .sku("NS-ES-109").name("Earth Nostalgia Set N9").category("Misc")
                         .manufacturer("Various")
-                        .price(new BigDecimal("4400.00")).costPrice(new BigDecimal("4100.00"))
+                        .price(new BigDecimal("440.00")).costPrice(new BigDecimal("410.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_EARTH_SET_9).createdBy("system")
                         .attributes(Map.of(
                                 "Radio Receiver","1 pcs",
@@ -926,7 +926,7 @@ public class DataSeeder {
                 Product cryogenicReactor2 = Product.builder()
                         .sku("CR-RX-210").name("Cryogenic Reactor Mk II").category("Power Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("910000.00")).costPrice(new BigDecimal("850000.00"))
+                        .price(new BigDecimal("9100.00")).costPrice(new BigDecimal("8500.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_CRYOGENIC_REACTOR_3).createdBy("system")
                         .attributes(Map.of(
                                 "Cooling Medium","Liquid Helium",
@@ -945,7 +945,7 @@ public class DataSeeder {
                 Product quantumCapacitor2 = Product.builder()
                         .sku("QC-EN-211").name("Quantum Capacitor Mk II").category("Energy Storage")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("720000.00")).costPrice(new BigDecimal("670000.00"))
+                        .price(new BigDecimal("7200.00")).costPrice(new BigDecimal("6700.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_QUANTUM_CAPACITOR_3).createdBy("system")
                         .attributes(Map.of(
                                 "Charge Capacity","8 PJ",
@@ -963,7 +963,7 @@ public class DataSeeder {
                 Product antimatterFuelPack2 = Product.builder()
                         .sku("AF-PW-301").name("Antimatter Fuel Pack V2").category("Fuel Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("640000.00")).costPrice(new BigDecimal("590000.00"))
+                        .price(new BigDecimal("6400.00")).costPrice(new BigDecimal("5900.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_ANTIMATTER_FUEL_PACK_3).createdBy("system")
                         .attributes(Map.of(
                                 "Fuel Type","Antimatter Capsules",
@@ -982,7 +982,7 @@ public class DataSeeder {
                 Product quantumBatteryBank2 = Product.builder()
                         .sku("QB-EN-302").name("Quantum Battery Bank V2B-1").category("Energy Storage")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("520000.00")).costPrice(new BigDecimal("480000.00"))
+                        .price(new BigDecimal("5200.00")).costPrice(new BigDecimal("4800.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_QUANTUM_BATTERY_BANK_3).createdBy("system")
                         .attributes(Map.of(
                                 "Total Capacity","14 PJ",
@@ -1001,7 +1001,7 @@ public class DataSeeder {
                 Product protonInjectorAssembly2 = Product.builder()
                         .sku("PI-PR-303").name("Proton Injector Assembly XX-3").category("Propulsion Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("780000.00")).costPrice(new BigDecimal("720000.00"))
+                        .price(new BigDecimal("7800.00")).costPrice(new BigDecimal("7200.00"))
                         .currencyCode("USD").lowStockThreshold(5).imageUrl(IMG_PROTON_INJECTOR_ASSEMBLY_3).createdBy("system")
                         .attributes(Map.of(
                                 "Injector Type","Magnetic Proton Stream",
@@ -1020,7 +1020,7 @@ public class DataSeeder {
                 Product longRangeRadar = Product.builder()
                         .sku("LR-RD-304").name("Long Range Radar Array").category("Navigation Systems")
                         .manufacturer("Orbital Vision Systems")
-                        .price(new BigDecimal("430000.00")).costPrice(new BigDecimal("395000.00"))
+                        .price(new BigDecimal("4300.00")).costPrice(new BigDecimal("3950.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_LONG_RANGE_RADAR_ARRAY_3).createdBy("system")
                         .attributes(Map.of(
                                 "Detection Range","120 AU",
@@ -1039,7 +1039,7 @@ public class DataSeeder {
                 Product engineMaintenanceKit2 = Product.builder()
                         .sku("EM-TL-305").name("Engine Maintenance Kit F4").category("Maintenance Tools")
                         .manufacturer("Orion Mechanics")
-                        .price(new BigDecimal("42000.00")).costPrice(new BigDecimal("36000.00"))
+                        .price(new BigDecimal("420.00")).costPrice(new BigDecimal("360.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_ENGINE_MAINTENANCE_KIT_3).createdBy("system")
                         .attributes(Map.of(
                                 "Diagnostic Tools","6 pcs",
@@ -1058,7 +1058,7 @@ public class DataSeeder {
                 Product hullSealantKit2 = Product.builder()
                         .sku("HS-RP-306").name("Hull Sealant Kit XL").category("Hull Repair Systems")
                         .manufacturer("Orion Mechanics")
-                        .price(new BigDecimal("36000.00")).costPrice(new BigDecimal("31000.00"))
+                        .price(new BigDecimal("360.00")).costPrice(new BigDecimal("310.00"))
                         .currencyCode("USD").lowStockThreshold(12).imageUrl(IMG_HULL_SEALANT_KIT_3).createdBy("system")
                         .attributes(Map.of(
                                 "Sealant Tubes","6 pcs",
@@ -1077,7 +1077,7 @@ public class DataSeeder {
                 Product thermalInsulationSet2 = Product.builder()
                         .sku("TI-HL-307").name("Thermal Insulation Set MN-11").category("Hull Systems")
                         .manufacturer("Orion Mechanics")
-                        .price(new BigDecimal("54000.00")).costPrice(new BigDecimal("48000.00"))
+                        .price(new BigDecimal("540.00")).costPrice(new BigDecimal("480.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_THERMAL_INSULATION_SET_3).createdBy("system")
                         .attributes(Map.of(
                                 "Insulation Panels","10 pcs",
@@ -1096,7 +1096,7 @@ public class DataSeeder {
                 Product powerRelayKit2 = Product.builder()
                         .sku("PR-EL-308").name("Power Relay Kit v2-2").category("Electrical Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("61000.00")).costPrice(new BigDecimal("55000.00"))
+                        .price(new BigDecimal("610.00")).costPrice(new BigDecimal("550.00"))
                         .currencyCode("USD").lowStockThreshold(9).imageUrl(IMG_POWER_RELAY_KIT_3_1).createdBy("system")
                         .attributes(Map.of(
                                 "Relay Modules","12 pcs",
@@ -1115,7 +1115,7 @@ public class DataSeeder {
                 Product emergencyDockingKit2 = Product.builder()
                         .sku("ED-DK-309").name("Emergency Docking Kit v2-1.3").category("Docking Systems")
                         .manufacturer("Orbital Vision Systems")
-                        .price(new BigDecimal("87000.00")).costPrice(new BigDecimal("79000.00"))
+                        .price(new BigDecimal("870.00")).costPrice(new BigDecimal("790.00"))
                         .currencyCode("USD").lowStockThreshold(8).imageUrl(IMG_EMERGENCY_DOCKING_KIT_3).createdBy("system")
                         .attributes(Map.of(
                                 "Docking Clamps","4 pcs",
@@ -1134,7 +1134,7 @@ public class DataSeeder {
                 Product fieldMaintenanceToolkit2 = Product.builder()
                         .sku("FM-TL-310").name("Field Maintenance Toolkit v2.2").category("Maintenance Tools")
                         .manufacturer("Orion Mechanics")
-                        .price(new BigDecimal("73000.00")).costPrice(new BigDecimal("67000.00"))
+                        .price(new BigDecimal("730.00")).costPrice(new BigDecimal("670.00"))
                         .currencyCode("USD").lowStockThreshold(9).imageUrl(IMG_FIELD_MAINTENANCE_TOOLKIT_3).createdBy("system")
                         .attributes(Map.of(
                                 "Multi Tools","5 pcs",
@@ -1153,7 +1153,7 @@ public class DataSeeder {
                 Product thermalPatchRepairSet2 = Product.builder()
                         .sku("TP-RP-311").name("Thermal Patch Repair Set v2.2").category("Hull Repair Systems")
                         .manufacturer("Orion Mechanics")
-                        .price(new BigDecimal("39000.00")).costPrice(new BigDecimal("34000.00"))
+                        .price(new BigDecimal("390.00")).costPrice(new BigDecimal("340.00"))
                         .currencyCode("USD").lowStockThreshold(10).imageUrl(IMG_THERMAL_PATCH_REPAIR_SET_3).createdBy("system")
                         .attributes(Map.of(
                                 "Thermal Patches","12 pcs",
@@ -1172,7 +1172,7 @@ public class DataSeeder {
                 Product diagnosticScannerKit2 = Product.builder()
                         .sku("DS-SC-312").name("Diagnostic Scanner Kit v2.2").category("Diagnostics")
                         .manufacturer("Orbital Vision Systems")
-                        .price(new BigDecimal("95000.00")).costPrice(new BigDecimal("88000.00"))
+                        .price(new BigDecimal("950.00")).costPrice(new BigDecimal("880.00"))
                         .currencyCode("USD").lowStockThreshold(7).imageUrl(IMG_DIAGNOSTIC_SCANNER_KIT_3).createdBy("system")
                         .attributes(Map.of(
                                 "Scanner Units","3 pcs",
@@ -1191,7 +1191,7 @@ public class DataSeeder {
                 Product dataCoreBackupSet2 = Product.builder()
                         .sku("DC-ST-313").name("Data Core Backup Set v2.1").category("Data Systems")
                         .manufacturer("Orbital Vision Systems")
-                        .price(new BigDecimal("180000.00")).costPrice(new BigDecimal("165000.00"))
+                        .price(new BigDecimal("1800.00")).costPrice(new BigDecimal("1650.00"))
                         .currencyCode("USD").lowStockThreshold(6).imageUrl(IMG_DATA_CORE_BACKUP_SET_3).createdBy("system")
                         .attributes(Map.of(
                                 "Storage Units","6 pcs",
@@ -1210,7 +1210,7 @@ public class DataSeeder {
                 Product jumpDriveCoil2 = Product.builder()
                         .sku("JD-PR-314").name("Jump Drive Coil X4").category("Propulsion Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("980000.00")).costPrice(new BigDecimal("920000.00"))
+                        .price(new BigDecimal("9800.00")).costPrice(new BigDecimal("9200.00"))
                         .currencyCode("USD").lowStockThreshold(4).imageUrl(IMG_JUMP_DRIVE_COIL_3).createdBy("system")
                         .attributes(Map.of(
                                 "Coil Rings","8 Units",
@@ -1229,7 +1229,7 @@ public class DataSeeder {
                 Product shieldGeneratorArray2 = Product.builder()
                         .sku("SG-DF-315").name("Shield Generator Array MMX").category("Defensive Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("850000.00")).costPrice(new BigDecimal("790000.00"))
+                        .price(new BigDecimal("8500.00")).costPrice(new BigDecimal("7900.00"))
                         .currencyCode("USD").lowStockThreshold(4).imageUrl(IMG_SHIELD_GENERATOR_ARRAY_3).createdBy("system")
                         .attributes(Map.of(
                                 "Shield Emitters","6 Units",
@@ -1249,8 +1249,8 @@ public class DataSeeder {
                         .name("Power Relay Kit V3.1")
                         .category("Electrical Systems")
                         .manufacturer("Helios Dynamics")
-                        .price(new BigDecimal("72000.00"))
-                        .costPrice(new BigDecimal("66000.00"))
+                        .price(new BigDecimal("720.00"))
+                        .costPrice(new BigDecimal("660.00"))
                         .currencyCode("USD")
                         .lowStockThreshold(8)
                         .imageUrl(IMG_POWER_RELAY_KIT_V31)
